@@ -93,19 +93,5 @@ public class flipGridTask {
 
     }
 
-    @Test
-    public void DragAndDropChaining() {
-        driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
-        driver.manage().window().maximize();
 
-        Actions actions = new Actions(driver);
-        WebElement source = driver.findElement(By.id("draggable"));
-        WebElement target = driver.findElement(By.id("droptarget"));
-
-        //drag and drop without draganddrop method
-
-        //if you are chaining actions we add build() method before perform()
-        actions.moveToElement(source).clickAndHold().pause(2000).release(target).perform();
-        //actions.moveToElement(source).clickAndHold().moveToElement(target).pause(3000).release().build().perform();
-    }
 }
