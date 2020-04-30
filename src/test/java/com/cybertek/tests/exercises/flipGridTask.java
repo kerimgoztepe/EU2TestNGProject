@@ -20,18 +20,19 @@ public class flipGridTask {
     WebDriver driver;
 
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
         driver = WebDriverFactory.getDriver("chrome");
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
+
     @AfterTest
-    public void closeUp() throws InterruptedException{
+    public void closeUp() throws InterruptedException {
         Thread.sleep(3000);
         driver.quit();
     }
 
     @Test
-    public void test() throws InterruptedException{
+    public void test() throws InterruptedException {
 
         //driver.navigate().to("https://my.flipgrid.com/");
         driver.get("https://my.flipgrid.com");
@@ -52,7 +53,7 @@ public class flipGridTask {
         String mainWindow = driver.getWindowHandle();
 
         for (String newWindow : currentWindowHandle) {
-            if (!newWindow.equals(currentWindowHandle)){
+            if (!newWindow.equals(currentWindowHandle)) {
                 driver.switchTo().window(newWindow);
             }
         }
@@ -62,7 +63,7 @@ public class flipGridTask {
 
         //locate password box, send password, click Enter
         Thread.sleep(2000);
-        driver.findElement(By.xpath("//input[@name='password']")).sendKeys("03412Key",Keys.ENTER);
+        driver.findElement(By.xpath("//input[@name='password']")).sendKeys("03412Key", Keys.ENTER);
 
         //Switch back to main window
         driver.switchTo().window(mainWindow);
@@ -77,7 +78,7 @@ public class flipGridTask {
             driver.findElement(By.xpath("//img[1]")).click();
             Thread.sleep(6000);
             Actions escButton = new Actions(driver);
-            escButton.sendKeys(Keys.ESCAPE).build().perform();
+            escButton.click().perform();
         }
 
         String lastCount = counter.getText();
@@ -88,7 +89,23 @@ public class flipGridTask {
         int firstCountInt = Integer.valueOf(firstCount);
         int lastCountInt = Integer.valueOf(lastCount);
 
-        Assert.assertTrue(lastCountInt==firstCountInt+n,"verification of increased views by " + n + " times");
+        Assert.assertTrue(lastCountInt == firstCountInt + n, "verification of increased views by " + n + " times");
 
+    }
+
+    @Test
+    public void DragAndDropChaining() {
+        driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
+        driver.manage().window().maximize();
+
+        Actions actions = new Actions(driver);
+        WebElement source = driver.findElement(By.id("draggable"));
+        WebElement target = driver.findElement(By.id("droptarget"));
+
+        //drag and drop without draganddrop method
+
+        //if you are chaining actions we add build() method before perform()
+        actions.moveToElement(source).clickAndHold().pause(2000).release(target).perform();
+        //actions.moveToElement(source).clickAndHold().moveToElement(target).pause(3000).release().build().perform();
     }
 }
