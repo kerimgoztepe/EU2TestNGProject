@@ -76,8 +76,8 @@ public class flipGridTask {
         for (int i = 1; i <= n; i++) {
             driver.findElement(By.xpath("//img[1]")).click();
             Thread.sleep(6000);
-            Actions windowAction = new Actions(driver);
-            windowAction.sendKeys(Keys.ESCAPE).build().perform();
+            Actions escButton = new Actions(driver);
+            escButton.sendKeys(Keys.ESCAPE).build().perform();
         }
 
         String lastCount = counter.getText();
