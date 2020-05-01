@@ -19,6 +19,7 @@ public class HoverTest {
      * hover over each image in the website
      * verify each name:user text is displayed
      */
+
     WebDriver driver;
 
     @BeforeMethod

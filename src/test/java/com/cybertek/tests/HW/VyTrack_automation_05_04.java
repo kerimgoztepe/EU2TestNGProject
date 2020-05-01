@@ -48,6 +48,8 @@ public class VyTrack_automation_05_04 {
        String actualVehicleInfo = driver.findElement(By.xpath("//h1[@class='user-name']")).getText();
        String expectedVehicleInfo = "Halim Smith Vendor Driver Smith Muhammet Ali";
        Assert.assertTrue(actualVehicleInfo.contentEquals(expectedVehicleInfo),"verify vehicle info");
+       System.out.println("expectedVehicleInfo = " + expectedVehicleInfo);
+       System.out.println("actualVehicleInfo = " + actualVehicleInfo);
 
 
 
