@@ -72,7 +72,7 @@ public class flipGridTask {
         WebElement counter = driver.findElement(By.xpath("(//td[@class='table__cell  text-center hide-for-medium-down'])[1]"));
         String firstCount = counter.getText();
 
-        // otomasyon koy buraya loop u
+        // loop for watch video
         int n = 5;
         for (int i = 1; i <= n; i++) {
             driver.findElement(By.xpath("//img[1]")).click();
@@ -81,14 +81,17 @@ public class flipGridTask {
             escButton.click().perform();
         }
 
+        //get the last watch counter number as String
         String lastCount = counter.getText();
 
         System.out.println("lastCount = " + lastCount);
         System.out.println("firstCount = " + firstCount);
 
+        //parse String counter values to Integer to verify that count is increased
         int firstCountInt = Integer.valueOf(firstCount);
         int lastCountInt = Integer.valueOf(lastCount);
 
+        //verification of increased number
         Assert.assertTrue(lastCountInt == firstCountInt + n, "verification of increased views by " + n + " times");
 
     }
