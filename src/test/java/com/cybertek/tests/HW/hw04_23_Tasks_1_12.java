@@ -13,7 +13,7 @@ import org.testng.annotations.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class hw04_23 {
+public class hw04_23_Tasks_1_12 {
 
     WebDriver driver;
 
@@ -129,8 +129,62 @@ Step 3. Verify that following options for programming languages are displayed: c
         Assert.assertTrue(actualTextMessage.contains("Thanks for subscribing"));
 
     }
-// Test 10
+
     @Test
+    public void test7() {
+
+        driver.get("https://practice-cybertekschool.herokuapp.com");
+
+        driver.findElement(By.partialLinkText("Upload")).click();
+        WebElement chooseFile=driver.findElement(By.name("file"));
+
+        String projectPath=System.getProperty("user.dir");
+        String relativePath="src/test/resources/testfile.txt";
+
+        String path=projectPath+"/"+relativePath;
+
+        chooseFile.sendKeys(path);
+        WebElement UploadButton=driver.findElement(By.cssSelector(".button"));
+        UploadButton.click();
+
+        WebElement message=driver.findElement(By.xpath("//h3[text()='File Uploaded!']"));
+        String actualSubject=message.getText();
+        String expectedSubject= "File Uploaded!";
+
+        Assert.assertEquals(actualSubject,expectedSubject);
+
+        String actualFilename=driver.findElement(By.id("uploaded-files")).getText();
+        Assert.assertEquals(actualFilename,"testfile.txt");
+
+    }
+
+    @Test       // Test -8-
+    public void testCase8() throws InterruptedException{
+        //Step 1. Go to “https://practicecybertekschool.herokuapp.com”
+        driver.get("https://practice-cybertekschool.herokuapp.com");
+
+        //Step 2. And click on “Autocomplete”.
+        driver.findElement(By.linkText("Autocomplete")).click();
+
+        //Step 3. Enter “United States of America” into country input box
+
+        //locate the text box & enter “United States of America”
+        driver.findElement(By.id("myCountry")).sendKeys("United States of America");
+        Thread.sleep(2000);
+
+        //click Submit button
+        driver.findElement(By.cssSelector(".btn-primary")).click();
+
+        //Step 4. Verify that following message is displayed: “You selected: United States of America”
+        String actualMessage = driver.findElement(By.id("result")).getText();
+        Assert.assertEquals(actualMessage,"You selected: United States of America");
+
+        Assert.assertTrue(driver.findElement(By.id("result")).isDisplayed());
+
+    }
+
+
+    @Test       // Test -9-10-11-12-
     public void TestCase10forLoopClick() throws InterruptedException {
         driver.get("https://practice-cybertekschool.herokuapp.com/status_codes");
         // there are 4 status code(200/301/404/500) under same parent, create a WebElementLİST of them
@@ -160,8 +214,8 @@ Step 3. Verify that following options for programming languages are displayed: c
     }
 
 
-    // Test 10 alternative - same method findBy xpath
-    @Test
+    // Test 9-12 alternative - same method findBy xpath
+    @Test           // Test -9-10-11-12-
     public void test10alternate() throws InterruptedException {
         //navigate to related link
         driver.get("https://practice-cybertekschool.herokuapp.com/status_codes");
