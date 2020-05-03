@@ -51,6 +51,7 @@ import org.testng.annotations.Test;
             String projectPath = System.getProperty("user.dir");
             String relativePath = "src/test/resources/testfile.txt";
             String filePath = projectPath+"/"+relativePath;
+            //System.out.println(filePath);
 
             chooseFile.sendKeys(filePath);
             //clicking upload button
