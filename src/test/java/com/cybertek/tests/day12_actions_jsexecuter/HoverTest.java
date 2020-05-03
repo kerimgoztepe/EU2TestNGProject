@@ -35,9 +35,58 @@ public class HoverTest {
         Thread.sleep(3000);
         driver.quit();
     }
+    @Test
+    public void testJamalWay() {
+        driver.get("http://practice.cybertekschool.com/hovers");
+
+
+        for (int i = 1; i <= 3; i++) {
+
+            //creating dynamic xpath for images
+            String imgXpath = "(//img)[" + i + "]";
+            System.out.println(imgXpath);
+            WebElement img = driver.findElement(By.xpath(imgXpath));
+
+            Actions actions = new Actions(driver);
+
+            actions.moveToElement(img).perform();
+
+            String textXpath = "//h5[.='name: user" + i + "']";
+            System.out.println(textXpath);
+            WebElement text = driver.findElement(By.xpath(textXpath));
+
+            Assert.assertTrue(text.isDisplayed(), "Verify user" + i + " is displayed");
+
+        }
+    }
+    @Test
+    public void hoverTestGoodOne() throws InterruptedException {
+
+        //navigate to web-page
+        driver.get("http://practice.cybertekschool.com/hovers");
+
+        //locate 3 images and assign to List as web-element
+        List<WebElement> elements = driver.findElements(By.xpath("//img"));
+
+        //create actions object / passing driver as a constructor
+        Actions action = new Actions(driver);
+
+        //For String manipulation create str
+        String str = null;
+
+        //Loop for hovering over images, wait 2 secs, get texts and verify displayed
+        for (int i = 0; i < elements.size(); i++) {
+            str = "(//h5[contains(text(),'user')])["+(i+1)+"]";
+            action.moveToElement(elements.get(i)).perform();
+            Thread.sleep(2000);
+            Assert.assertTrue(driver.findElement(By.xpath(str)).isDisplayed());
+            System.out.println(driver.findElement(By.xpath(str)).getText());
+        }
+
+    }
 
     @Test
-    public void hoverTest1() throws InterruptedException {
+    public void hoverTestMyIlkelWay() throws InterruptedException {
 
         //navigate to web-page
         driver.get("http://practice.cybertekschool.com/hovers");
@@ -90,29 +139,5 @@ public class HoverTest {
         }
 
     }
-    @Test
-    public void hoverTest2() throws InterruptedException {
 
-        //navigate to web-page
-        driver.get("http://practice.cybertekschool.com/hovers");
-
-        //locate 3 images and assign to List as web-element
-        List<WebElement> elements = driver.findElements(By.xpath("//img"));
-
-        //create actions object / passing driver as a constructor
-        Actions action = new Actions(driver);
-
-        //For String manipulation create str
-        String str = null;
-
-        //Loop for hovering over images, wait 2 secs, get texts and verify displayed
-        for (int i = 0; i < elements.size(); i++) {
-            str = "(//h5[contains(text(),'user')])["+(i+1)+"]";
-            action.moveToElement(elements.get(i)).perform();
-            Thread.sleep(2000);
-            Assert.assertTrue(driver.findElement(By.xpath(str)).isDisplayed());
-            System.out.println(driver.findElement(By.xpath(str)).getText());
-        }
-
-    }
 }
