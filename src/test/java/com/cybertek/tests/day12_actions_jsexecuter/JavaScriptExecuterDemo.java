@@ -21,19 +21,21 @@ public class JavaScriptExecuterDemo {
 
     @AfterMethod
     public void afterMethod() throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         driver.quit();
     }
 
     @Test
-    public void clickWithJS(){
+    public void clickWithJS()throws InterruptedException{
         driver.get("http://practice.cybertekschool.com/");
 
+        //locate dropdown link
         WebElement dropdownLink = driver.findElement(By.linkText("Dropdown"));
-        //clicking with JavascriptExecutor
+        Thread.sleep(1000);
+        //clicking with JavascriptExecutor we use it when we cannot click using selenium
         //create js executor object
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        //use executeScript
+        //use executeScript to click
         jse.executeScript("arguments[0].click();",dropdownLink);
 
     }
