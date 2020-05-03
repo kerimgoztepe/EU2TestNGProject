@@ -100,7 +100,7 @@ public class HoverTest {
         List<WebElement> elements = driver.findElements(By.xpath("//img"));
 
         //create actions object / passing driver as a constructor
-        Actions mouseAction = new Actions(driver);
+        Actions action = new Actions(driver);
 
         //For String manipulation create str
         String str = null;
@@ -108,7 +108,7 @@ public class HoverTest {
         //Loop for hovering over images, wait 2 secs, get texts and verify displayed
         for (int i = 0; i < elements.size(); i++) {
             str = "(//h5[contains(text(),'user')])["+(i+1)+"]";
-            mouseAction.moveToElement(elements.get(i)).perform();
+            action.moveToElement(elements.get(i)).perform();
             Thread.sleep(2000);
             Assert.assertTrue(driver.findElement(By.xpath(str)).isDisplayed());
             System.out.println(driver.findElement(By.xpath(str)).getText());
