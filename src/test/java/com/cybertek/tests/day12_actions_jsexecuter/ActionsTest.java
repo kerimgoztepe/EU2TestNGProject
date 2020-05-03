@@ -33,11 +33,11 @@ public class ActionsTest {
         WebElement img1 = driver.findElement(By.tagName("img"));
         //Actions --> class that contains all the user interactions
         //how to create actions object / pasing driver as a constructor
-        Actions mouseAction = new Actions(driver);
+        Actions actions = new Actions(driver);
         //perform() --> perform the action, complete the action
         //moveToElement--> move your mouse to webelement(hover over)
         Thread.sleep(2000);
-        mouseAction.moveToElement(img1).perform();
+        actions.moveToElement(img1).perform();
 
         WebElement link = driver.findElement(By.linkText("View profile"));
 
