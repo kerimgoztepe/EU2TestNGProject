@@ -132,7 +132,7 @@ public class HoverTest {
                 link = driver.findElement(By.xpath("(//h5[contains(text(),'user')])[3]"));
                 //verify message is displayed
                 Assert.assertTrue(link.isDisplayed(), "verify View profile link is displayed");
-                //get message and print
+                //get day13_webtablesmessage and print
                 System.out.println("link = " + link.getText());
 
             }
