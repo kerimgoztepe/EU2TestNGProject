@@ -85,4 +85,62 @@ public class WebTablesExample {
             System.out.println(row.getText());
         }
     }
+    @Test
+    public void getAllCellInOneRow(){
+        List<WebElement> allCelsInOneRow = driver.findElements(By.xpath("//table[@id='table1']/tbody/tr[1]/td"));
+
+        for (WebElement cell : allCelsInOneRow) {
+            System.out.println(cell.getText());
+        }
+
+    }
+
+
+    @Test
+    public void getASingleCellByIndex(){
+        WebElement singleCell = driver.findElement(By.xpath("//table[@id='table1']/tbody/tr[4]/td[5]"));
+        System.out.println(singleCell.getText());
+
+
+    }
+
+    @Test
+    public void PrintAllCellsByIndex(){
+
+        int rowNumber = getNumberOfRows();
+        int colNumber = getNumberOfColumns();
+
+        System.out.println("colNumber = " + colNumber);
+        System.out.println("rowNumber = " + rowNumber);
+
+        //iterate through each row on the table
+        for (int i = 1; i <=rowNumber ; i++) {
+
+            //iterate through each cell for each row
+            for (int j = 1; j <=colNumber ; j++) {
+                String cellXpath = "//table[@id='table1']/tbody/tr["+i+"]/td["+j+"]";
+                System.out.println(cellXpath);
+
+                WebElement cell = driver.findElement(By.xpath(cellXpath));
+                System.out.println(cell.getText());
+
+            }
+
+        }
+        //create a method that accepts row and col number, and returns the cell as a webelement
+    }
+
+    private int getNumberOfColumns() {
+        List<WebElement> headers = driver.findElements(By.xpath("//table[@id='table1']//th"));
+        return headers.size();
+    }
+
+    private int getNumberOfRows() {
+        List<WebElement> allRows = driver.findElements(By.xpath("//table[@id='table1']/tbody/tr"));
+        return allRows.size();
+    }
+
+
 }
+
+
