@@ -31,16 +31,21 @@ public class ActionsTest {
         driver.get("http://practice.cybertekschool.com/hovers");
 
         WebElement img1 = driver.findElement(By.tagName("img"));
+
         //Actions --> class that contains all the user interactions
-        //how to create actions object / pasing driver as a constructor
+        //how to create actions object / passing driver as a constructor
         Actions actions = new Actions(driver);
+
         //perform() --> perform the action, complete the action
         //moveToElement--> move your mouse to webelement(hover over)
         Thread.sleep(2000);
         actions.moveToElement(img1).perform();
 
+        //get text of web element
         WebElement link = driver.findElement(By.linkText("View profile"));
+        System.out.println("link = " + link.getText());
 
+        //verify text message is displayed
         Assert.assertTrue(link.isDisplayed(), "verify View profile link is displayed");
 
 
