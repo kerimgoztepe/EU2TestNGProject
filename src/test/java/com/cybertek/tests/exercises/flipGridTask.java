@@ -41,9 +41,6 @@ public class flipGridTask {
         //make full-screen to better see pop-ups and prevent problems
         driver.manage().window().maximize();
 
-        //String parent = driver.getWindowHandle();
-        // parent da mevcut pencerenin unique identifier tutar.
-
         //locate Login with Google box, click on it
         driver.findElement(By.xpath("//button[@data-testid='googleSSOButton__button__login']")).click();
         //Thread.sleep(2000); // yeni acılan pop up pencerenin tam yuklenmesı ıcın bekle
