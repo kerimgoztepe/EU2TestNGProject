@@ -37,8 +37,8 @@ public class HoverTest {
     }
     @Test
     public void testJamalWay() {
-        driver.get("http://practice.cybertekschool.com/hovers");
 
+        driver.get("http://practice.cybertekschool.com/hovers");
 
         for (int i = 1; i <= 3; i++) {
 
