@@ -25,8 +25,6 @@ public class Task_09_12_Data_Provider {
         driver.quit();
     }
 
-
-
         @DataProvider
         public static Object[] statusCode() { //              todo Data provider annotation helps to provide data var test cases
             //TODO-->return type should be Object Array (Object[]), set any name to your method(like: getDATA() or bilgiAL()
