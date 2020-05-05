@@ -51,14 +51,14 @@ import org.testng.annotations.Test;
             String projectPath = System.getProperty("user.dir");
             String relativePath = "src/test/resources/testfile.txt";
             String filePath = projectPath+"/"+relativePath;
-            //System.out.println(filePath);
-
             chooseFile.sendKeys(filePath);
+
             //clicking upload button
             driver.findElement(By.id("file-submit")).click();
 
             //getting name of the file
             String actualFilename = driver.findElement(By.id("uploaded-files")).getText();
+
             //verify file name is file.txt
             Assert.assertEquals(actualFilename,"testfile.txt");
         }
