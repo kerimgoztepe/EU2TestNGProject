@@ -35,7 +35,8 @@ public class JavaScriptExecuterDemo {
         //clicking with JavascriptExecutor we use it when we cannot click using selenium
         //create js executor object
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        //use executeScript to click
+
+        //use executeScript to click // google it to find right code to click "arguments[0].click"
         jse.executeScript("arguments[0].click();",dropdownLink);
 
     }
