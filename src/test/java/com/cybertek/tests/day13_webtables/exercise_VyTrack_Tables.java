@@ -20,10 +20,7 @@ public class exercise_VyTrack_Tables {
     @DataProvider // truck driver credentials for login
     public static Object[][] credentials() {
 
-        return new Object[][]{
-                {"user16", "UserUser123"},
-
-        };
+        return new Object[][]{{"user16", "UserUser123"}};
     }
     @BeforeMethod
     public void setUp() {
