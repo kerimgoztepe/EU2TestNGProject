@@ -26,15 +26,9 @@ public class exercise {
     }
     @Test
     public void PrintAsingleCellByMethod() throws InterruptedException {
-/*
-        Scanner input = new Scanner(System.in);
-        System.out.print( "Please enter a Column number : ");
-        int columnNum = input.nextInt();
-        System.out.print( "Please enter a Row number : ");
-        int rowNum = input.nextInt();
-*/
+
         int columnNum = 4;
-        int rowNum = 4;
+        int rowNum = 2;
         System.out.println("Automation will display the cell in COLUMN : " + columnNum+ " ROW : " + rowNum);
         String CellData = callAcell(columnNum,rowNum).getText();
         //this part could be directly in soutv without declaring CellData variable : Lazy way
