@@ -38,18 +38,24 @@ public class JavaScriptExecuterDemo {
 
         //use executeScript to click // google it to find right code to click "arguments[0].click"
         jse.executeScript("arguments[0].click();",dropdownLink);
+        Thread.sleep(2000);
 
     }
     @Test
-    public void type(){
+    public void type() throws InterruptedException{
         driver.get("http://practice.cybertekschool.com/dynamic_controls");
 
         WebElement inputbox = driver.findElement(By.cssSelector("#input-example>input"));
 
         JavascriptExecutor jse = (JavascriptExecutor) driver;
 
+        //locate disabled button and send keys
         String str = "Hello disable input";
+        String str2 = "World Citizen";
         jse.executeScript("arguments[0].setAttribute('value', '" + str +"')",inputbox);
+        Thread.sleep(3000);
+        jse.executeScript("arguments[0].setAttribute('value', '" + str2 +"')", inputbox);
+        Thread.sleep(3000);
 
     }
 
