@@ -53,9 +53,6 @@ public class exercise_WebTable {
                     WebElement target = driver.findElement(By.xpath(wantedItem));
                     System.out.println("Jason info = " + target.getText());
                 }
-
-
-
             }
 
         }
