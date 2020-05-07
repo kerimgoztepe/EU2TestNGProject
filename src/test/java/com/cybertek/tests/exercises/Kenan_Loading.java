@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -22,15 +23,15 @@ public class Kenan_Loading {
     public static Object[][] credentials() {
 
         return new Object[][]{
-                {"user16", "UserUser123"},
-                {"storemanager61", "UserUser123"},
-                {"salesmanager117", "UserUser123"} };
+                {"user18", "UserUser123"},
+               {"storemanager62", "UserUser123"},
+               {"salesmanager117", "UserUser123"}
+                };
     }
 
     @BeforeMethod
     public void setUp() {
         driver = WebDriverFactory.getDriver("chrome");
-
         driver.get("https://qa1.vytrack.com");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
@@ -53,7 +54,11 @@ public class Kenan_Loading {
         driver.findElement(By.id("_submit")).click();
 
         //WebElement element = driver.findElement(By.xpath("//*[.='Loading...']"));
-        WebElement element = driver.findElement(By.cssSelector(".loader-mask .loader-frame"));
+        //WebElement element = driver.findElement(By.cssSelector(".loader-mask .loader-frame"));
+
+
+        WebElement element = driver.findElement(By.id("progressbar"));
+        //wait.until(ExpectedConditions.visibilityOf(element));
         Assert.assertTrue(element.isDisplayed(),"loading is displayed");
         System.out.println("element = " + element.getText());
 
