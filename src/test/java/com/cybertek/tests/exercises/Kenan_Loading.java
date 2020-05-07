@@ -22,8 +22,8 @@ public class Kenan_Loading {
 
         return new Object[][]{
                 {"user16", "UserUser123"},
-
-        };
+                {"storemanager61", "UserUser123"},
+                {"salesmanager117", "UserUser123"} };
     }
 
     @BeforeMethod
