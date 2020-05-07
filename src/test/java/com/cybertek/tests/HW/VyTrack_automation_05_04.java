@@ -41,6 +41,7 @@ public class VyTrack_automation_05_04 {
        WebElement passwordBox = driver.findElement(By.id("prependedInput2"));
        passwordBox.sendKeys("UserUser123");
        driver.findElement(By.id("_submit")).click();
+       Thread.sleep(10000);
 
        //fullscreen
        driver.manage().window().maximize();
@@ -51,7 +52,7 @@ public class VyTrack_automation_05_04 {
        WebElement element2 = driver.findElement(By.xpath("(//span[@class='title title-level-2'])[6]"));
        action.moveToElement(element1).pause(1000).perform();
        action.moveToElement(element2).pause(2000).click().perform();
-       Thread.sleep(2000);
+       Thread.sleep(10000);
 
        //locate contract and click on it
        driver.findElement(By.xpath("//*[.='Halim Smith']")).click();
