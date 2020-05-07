@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class exercise_WebTable_CyberPracticePage {
+public class exercise_CyberPractice_WebTable {
 
     WebDriver driver;
 
