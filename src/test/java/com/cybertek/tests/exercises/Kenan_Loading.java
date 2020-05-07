@@ -17,7 +17,7 @@ public class Kenan_Loading {
 
     WebDriver driver;
 
-    @DataProvider// truck driver credentials
+    @DataProvider(name="credentials") // truck driver credentials
     public static Object[][] credentials() {
 
         return new Object[][]{
