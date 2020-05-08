@@ -62,5 +62,7 @@ public class Kenan_Loading {
         Assert.assertTrue(element.isDisplayed(),"loading is displayed");
         System.out.println("element = " + element.getText());
 
+
+
     }
 }
