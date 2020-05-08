@@ -12,6 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class VyTrack_automation_05_04 {
@@ -28,7 +29,7 @@ public class VyTrack_automation_05_04 {
     @AfterMethod
     public void afterMethod() throws InterruptedException {
         Thread.sleep(3000);
-        driver.quit();
+        //driver.quit();
     }
 
    @Test
@@ -41,7 +42,7 @@ public class VyTrack_automation_05_04 {
        WebElement passwordBox = driver.findElement(By.id("prependedInput2"));
        passwordBox.sendKeys("UserUser123");
        driver.findElement(By.id("_submit")).click();
-       Thread.sleep(10000);
+       Thread.sleep(5000);
 
        //fullscreen
        driver.manage().window().maximize();
@@ -64,12 +65,43 @@ public class VyTrack_automation_05_04 {
        System.out.println("expectedVehicleInfo = " + expectedVehicleInfo);
        System.out.println("actualVehicleInfo = " + actualVehicleInfo);
 
-       //verify that you edit one vehicle contract info
-       WebElement editButton = driver.findElement(By.xpath("//*[@title='Edit Vehicle Contract']"));
-       editButton.click(); //we can also do this action in previous line
-       WebElement VehiclesModelButton = driver.findElement(By.xpath("//a[.='VehiclesModel']"));
-       VehiclesModelButton.click(); //we can also do this action in previous line
+//       verify that you edit one vehicle contract info add new info and verify you made changes
 
+       //locate edit button and click
+       WebElement editButton = driver.findElement(By.xpath("//a[@title='Edit Vehicle Contract']"));
+       editButton.click(); //we can also do this action in previous line
+       //locate VehiclesModel button and click
+       WebElement VehiclesModelButton = driver.findElement(By.xpath("//a[.='VehiclesModel']"));
+       //use actions to click on VehiclesModel button
+       Actions actions = new Actions(driver);
+       actions.moveToElement(VehiclesModelButton).click().perform();
+       Thread.sleep(2000);
+
+       //locate 1st add button and click
+       WebElement AddButton1 = driver.findElement(By.xpath("(//button[@type='button'])[1]"));
+       AddButton1.click();
+       Thread.sleep(2000);
+       //handle the new window
+       String currentWindow = driver.getWindowHandle();
+       Set<String> windowHandles = driver.getWindowHandles();
+       for (String handle : windowHandles) {
+           if (!handle.equals(windowHandles)){
+               driver.switchTo().window(handle);
+           }
+       }
+       //locate any element (Accord) and click on it then click on select button
+       WebElement checkBoxItem = driver.findElement(By.xpath("//tbody/tr[10]/td[1]"));
+       checkBoxItem.click();
+       Thread.sleep(2000);
+       driver.findElement(By.xpath("(//*[.='Select'])[2]")).click();
+       Thread.sleep(2000);
+       //switch first window
+       driver.switchTo().window(currentWindow);
+       //locate and verify model name is displayed
+       String expectedName = "Model Name: Accord";
+       WebElement modelName = driver.findElement(By.xpath("//*[.='Model Name: Accord']"));
+       Assert.assertTrue(modelName.isDisplayed(),"verify that model name is displayed");
+       Assert.assertTrue(expectedName.contentEquals(modelName.getText()),"verify that modelName is equal to our expected name");
 
 
    }
