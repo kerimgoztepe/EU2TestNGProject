@@ -47,5 +47,6 @@ public class mackolik {
         int point = Integer.parseInt(clubPoints.getText().trim());
         System.out.printf("%s %nPoints :%3d   Won: %3d   Deuce :%3d%n", teamNameFromDP, point, won, deuce);
         Assert.assertEquals(point, ((won * 3) + deuce), teamNameFromDP + " point's is wrong ");
+
     }
 }
