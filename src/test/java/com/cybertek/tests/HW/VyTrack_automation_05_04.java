@@ -64,6 +64,12 @@ public class VyTrack_automation_05_04 {
        System.out.println("expectedVehicleInfo = " + expectedVehicleInfo);
        System.out.println("actualVehicleInfo = " + actualVehicleInfo);
 
+       //verify that you edit one vehicle contract info
+       WebElement editButton = driver.findElement(By.xpath("//*[@title='Edit Vehicle Contract']"));
+       editButton.click(); //we can also do this action in previous line
+       WebElement VehiclesModelButton = driver.findElement(By.xpath("//a[.='VehiclesModel']"));
+       VehiclesModelButton.click(); //we can also do this action in previous line
+
 
 
    }
