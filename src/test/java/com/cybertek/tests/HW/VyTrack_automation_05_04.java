@@ -28,7 +28,7 @@ public class VyTrack_automation_05_04 {
     @AfterMethod
     public void afterMethod() throws InterruptedException {
         Thread.sleep(3000);
-        //driver.quit();
+        driver.quit();
     }
 
    @Test
