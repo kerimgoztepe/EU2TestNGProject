@@ -18,7 +18,7 @@ public class mackolik {
 
     @DataProvider
     public static Object[] teamNameProvider() {
-        return new String[]{"Trabzonspor", "AnkaraGucu", "Galatasaray", "Sivasspor", "Beşiktaş", "Alanyaspor", "Fenerbahçe"};
+        return new String[]{"Trabzonspor", "MKE Ankaragücü", "Galatasaray", "Sivasspor", "Beşiktaş", "Alanyaspor", "Fenerbahçe"};
     }
     @BeforeMethod
     public void setUp() {

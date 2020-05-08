@@ -58,31 +58,9 @@ public class Kenan_Loading {
 
 
         WebElement element = driver.findElement(By.id("progressbar"));
-        //wait.until(ExpectedConditions.visibilityOf(element));
+        //wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector( "div[class='loader-mask shown']"))));
         Assert.assertTrue(element.isDisplayed(),"loading is displayed");
         System.out.println("element = " + element.getText());
-
-
-       /* //System.out.println("Aftere clicking submit Title : " + driver.getTitle());
-        WebElement bar = driver.findElement(By.className("bar"));
-        WebElement h3 = driver.findElement(By.xpath("//h3"));
-        //System.err.println("--------------------");
-        System.out.println("h3.isDisplayed() = " + h3.isDisplayed());
-        //System.err.println("--------------------");
-        System.out.println("h3 Text = " + h3.getText().trim());
-        System.err.println("--------------------");
-        System.out.println("bar.isDisplayed() = " + bar.isDisplayed());
-        System.err.println("--------------------");
-        wait.until(ExpectedConditions.titleIs("Dashboard"));
-        //System.out.println(" Title :" + driver.getTitle());
-        //System.out.println("After title is Dashboar is displayed:" + bar.isDisplayed());
-        System.err.println("--------------------");
-        System.out.println("bar.isDisplayed() = " + bar.isDisplayed());
-        System.err.println("--------------------");
-        System.out.println("h3.isDisplayed() = " + h3.isDisplayed());
-        System.err.println("--------------------");
-        System.out.println("h3.getText().trim() = " + h3.getText().trim());
-        System.err.println("--------------------");*/
 
     }
 }
