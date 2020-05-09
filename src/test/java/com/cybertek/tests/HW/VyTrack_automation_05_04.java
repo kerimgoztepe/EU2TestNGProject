@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -82,21 +80,22 @@ public class VyTrack_automation_05_04 {
        AddButton1.click();
        Thread.sleep(2000);
        //handle the new window
-       String currentWindow = driver.getWindowHandle();
+       /*String currentWindow = driver.getWindowHandle();
        Set<String> windowHandles = driver.getWindowHandles();
+       System.out.println("windowHandles = " + windowHandles.size());
        for (String handle : windowHandles) {
            if (!handle.equals(windowHandles)){
                driver.switchTo().window(handle);
            }
-       }
+       }*/
        //locate any element (Accord) and click on it then click on select button
-       WebElement checkBoxItem = driver.findElement(By.xpath("//tbody/tr[10]/td[1]"));
+       WebElement checkBoxItem = driver.findElement(By.xpath("//tbody/tr[12]/td[1]"));
        checkBoxItem.click();
        Thread.sleep(2000);
        driver.findElement(By.xpath("(//*[.='Select'])[2]")).click();
        Thread.sleep(2000);
        //switch first window
-       driver.switchTo().window(currentWindow);
+       //driver.switchTo().window(currentWindow);
        //locate and verify model name is displayed
        String expectedName = "Model Name: Accord";
        WebElement modelName = driver.findElement(By.xpath("//*[.='Model Name: Accord']"));
