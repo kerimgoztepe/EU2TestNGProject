@@ -129,6 +129,15 @@ public class WebTablesExample {
         }
         //create a method that accepts row and col number, and returns the cell as a webelement
     }
+    @Test
+    public void getCellInRelationToanotherCellInSameRow(){
+
+        String firstName = "John";
+        String xpath = "//table[@id='table1']//td[.='"+firstName+"']/../td[3]";
+        WebElement email = driver.findElement(By.xpath(xpath));
+        System.out.println(email.getText());
+
+    }
 
     private int getNumberOfColumns() {
         List<WebElement> headers = driver.findElements(By.xpath("//table[@id='table1']//th"));
