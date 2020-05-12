@@ -65,7 +65,7 @@ public class VyTrack_automation_05_04 {
        System.out.println("expectedVehicleInfo = " + expectedVehicleInfo);
        System.out.println("actualVehicleInfo = " + actualVehicleInfo);
        Thread.sleep(3000);
-
+/*
 //       verify that you edit one vehicle contract info add new info and verify you made changes
 
        //locate edit button and click
@@ -116,7 +116,7 @@ public class VyTrack_automation_05_04 {
 
        Assert.assertTrue(flashMessage.isDisplayed(), "add vehicle model message is displayed");
 
-
+*/
    }
 
 }
