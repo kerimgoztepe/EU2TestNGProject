@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class VyTrack_automation_05_04 {
+public class VyTrack_US8_05_04 {
 
     WebDriver driver;
 
