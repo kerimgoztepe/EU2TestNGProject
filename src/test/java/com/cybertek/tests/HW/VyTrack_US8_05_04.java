@@ -1,10 +1,15 @@
 package com.cybertek.tests.HW;
 
+import com.cybertek.tests.TestBase;
+import com.cybertek.utilities.ConfigurationReader;
+import com.cybertek.utilities.Driver;
 import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -12,50 +17,107 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class VyTrack_US8_05_04 {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setUpMethod() {
-
-        driver = WebDriverFactory.getDriver("chrome");
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-    }
-
-    @AfterMethod
-    public void afterMethod() throws InterruptedException {
-        Thread.sleep(3000);
-        driver.quit();
-    }
+public class VyTrack_US8_05_04 extends TestBase {
 
    @Test
     public void Test1() throws InterruptedException {
         //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"
-        driver.get("https://qa1.vytrack.com/");
+       driver.get(ConfigurationReader.get("url"));
         //Use credentials to login
        WebElement userNameBox = driver.findElement(By.id("prependedInput"));
-       userNameBox.sendKeys("storemanager61");
+       userNameBox.sendKeys(ConfigurationReader.get("storemanager_username"));
        WebElement passwordBox = driver.findElement(By.id("prependedInput2"));
-       passwordBox.sendKeys("UserUser123");
-       driver.findElement(By.id("_submit")).click();
-       Thread.sleep(5000);
+       passwordBox.sendKeys(ConfigurationReader.get("storemanager_password")+ Keys.ENTER);
 
-       //fullscreen
-       driver.manage().window().maximize();
+       //wait until loading completes
+       WebDriverWait wait = new WebDriverWait(driver, 20);
+       WebElement loader= driver.findElement(By.cssSelector(".loader-mask>.loader-frame"));
+       wait.until(ExpectedConditions.invisibilityOfAllElements(loader));
 
-       //hover over Fleet module then Hover over to Vehicle Contracts module and click
-       Actions action = new Actions(driver);
+       /***
+        * AC1: Verify that authorized user should be able to access Vehicle Contract
+        * and able to see all vehicle contracts on the grid
+        */
+
+       //hover over to Fleet module
        WebElement element1 = driver.findElement(By.xpath("(//span[@class='title title-level-1'])[2]"));
-       WebElement element2 = driver.findElement(By.xpath("(//span[@class='title title-level-2'])[6]"));
-       action.moveToElement(element1).pause(1000).perform();
-       action.moveToElement(element2).pause(2000).click().perform();
-       Thread.sleep(10000);
+       actions.moveToElement(element1).pause(2000).perform();
 
-       //locate contract and click on it
+       //Hover over to Vehicle Contracts module and click
+       WebElement element2 = driver.findElement(By.xpath("(//span[@class='title title-level-2'])[6]"));
+       actions.moveToElement(element2).pause(2000).click().perform();
+
+       //wait until loading completes
+       wait.until(ExpectedConditions.invisibilityOfAllElements(loader));
+
+       //get title and print
+       System.out.println("driver.getTitle() = " + driver.getTitle());
+
+       //verify to see all vehicle contracts as a list
+       String expected = "All - Vehicle Contract - Entities - System - Car - Entities - System";
+       String actual = driver.getTitle();
+       Assert.assertEquals(actual,expected,"verify to see vehicle contracts as a list");
+
+       List<WebElement> contractsList = driver.findElements(By.xpath("//tbody/tr"));
+       for (WebElement element : contractsList) {
+           System.out.println("element.toString() = " + element.getText());
+       }
+
+
+
+       /***
+        * AC2: Verify that authorized user should be able to create Vehicle contract
+        */
+
+       //Click on Create Vehicle Contract button
+       driver.findElement(By.partialLinkText("Create Vehicle Contract")).click();
+
+       //wait until loading completes
+       wait.until(ExpectedConditions.invisibilityOfAllElements(loader));
+
+       //verify to see all dropdown items on the grid
+       ArrayList<String> items = new ArrayList<>();
+       items.add("Leasing");
+       items.add("Personal Loan");
+       items.add("Credit Card");
+       items.add("Cash");
+
+       WebElement typeDropdown = driver.findElement(By.linkText("Choose a value..."));
+       typeDropdown.click();
+
+      List<WebElement> typeElements = driver.findElements(By.xpath("//*[@class='select2-result-label']"));
+
+      for (int i = 0; i < typeElements.size(); i++) {
+           Assert.assertEquals(typeElements.get(i).getText(),items.get(i),"verify dropdown items to see");
+           System.out.println("items = " + typeElements.get(i).getText());
+       }
+
+
+      //enter valid info to empty spaces
+      typeElements.get(2).click();
+      driver.findElement(By.name("custom_entity_type[Responsible]")).sendKeys("Halim Smith");
+      driver.findElement(By.name("custom_entity_type[ActivationCost]")).sendKeys("12345");
+      driver.findElement(By.name("custom_entity_type[OdometerDetails]")).sendKeys("12345");
+      driver.findElement(By.name("custom_entity_type[Vendor]")).sendKeys("Halim Malim");
+      driver.findElement(By.name("custom_entity_type[Driver]")).sendKeys("Osman Driver");
+
+      //Click on Save And Close button
+      driver.findElement(By.xpath("(//button[@type='submit'])[1]")).click();
+      wait.until(ExpectedConditions.invisibilityOfAllElements(loader));
+
+      //verify to see "Entity saved" message
+      WebElement message = driver.findElement(By.xpath("//div[@class='message']"));
+      Assert.assertTrue(message.isDisplayed(), "verify save message is displayed");
+
+
+
+
+       /*//locate a contract and click on it
        driver.findElement(By.xpath("//*[.='Halim Smith']")).click();
 
        //Verify that you get your vehicle info successfully
@@ -64,7 +126,7 @@ public class VyTrack_US8_05_04 {
        Assert.assertTrue(actualVehicleInfo.contentEquals(expectedVehicleInfo),"verify vehicle info");
        System.out.println("expectedVehicleInfo = " + expectedVehicleInfo);
        System.out.println("actualVehicleInfo = " + actualVehicleInfo);
-       Thread.sleep(3000);
+       Thread.sleep(3000);*/
 /*
 //       verify that you edit one vehicle contract info add new info and verify you made changes
 
