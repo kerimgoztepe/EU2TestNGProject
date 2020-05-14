@@ -12,6 +12,7 @@ public class PropertiesTest {
         System.out.println("browser = " + browser);
 
         System.out.println(ConfigurationReader.get("driver_username"));
+        System.out.println(ConfigurationReader.get("url"));
 
     }
 }
