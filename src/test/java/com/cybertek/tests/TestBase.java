@@ -1,12 +1,14 @@
 package com.cybertek.tests;
 
 
+import com.cybertek.pages.LoginPage;
 import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -27,8 +29,8 @@ public class TestBase {
         actions = new Actions(driver);
         wait = new WebDriverWait(driver,10);
         driver.get(ConfigurationReader.get("url"));
-
-
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(ConfigurationReader.get("storemanager_username"), ConfigurationReader.get("storemanager_password"));
 
     }
 
