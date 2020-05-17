@@ -1,5 +1,6 @@
 package com.cybertek.tests;
 
+
 import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
 import org.openqa.selenium.By;
@@ -26,6 +27,7 @@ public class TestBase {
         actions = new Actions(driver);
         wait = new WebDriverWait(driver,10);
         driver.get(ConfigurationReader.get("url"));
+
 
 
     }
