@@ -45,12 +45,12 @@ public class VyTrack_US8_05_04 extends TestBase {
         */
 
        //hover over to Fleet module
-       WebElement element1 = driver.findElement(By.xpath("(//span[@class='title title-level-1'])[2]"));
-       actions.moveToElement(element1).pause(2000).perform();
+       WebElement fleet = driver.findElement(By.xpath("(//span[@class='title title-level-1'])[2]"));
+       actions.moveToElement(fleet).pause(2000).perform();
 
        //Hover over to Vehicle Contracts module and click
-       WebElement element2 = driver.findElement(By.xpath("(//span[@class='title title-level-2'])[6]"));
-       actions.moveToElement(element2).pause(2000).click().perform();
+       WebElement contracts = driver.findElement(By.xpath("(//span[@class='title title-level-2'])[6]"));
+       actions.moveToElement(contracts).pause(2000).click().perform();
 
        //wait until loading completes
        wait.until(ExpectedConditions.invisibilityOfAllElements(loader));
@@ -114,25 +114,39 @@ public class VyTrack_US8_05_04 extends TestBase {
       WebElement message = driver.findElement(By.xpath("//div[@class='message']"));
       Assert.assertTrue(message.isDisplayed(), "verify save message is displayed");
 
+/**
+ * Verify that authorized user should be able to Edit or Delete the Vehicle Contract or do more action
+ */
 
+       //hover over to Fleet module
+       actions.moveToElement(fleet).pause(2000).perform();
 
+       //Hover over to Vehicle Contracts module and click
+       actions.moveToElement(contracts).pause(2000).click().perform();
 
-       /*//locate a contract and click on it
-       driver.findElement(By.xpath("//*[.='Halim Smith']")).click();
+       //wait until loading completes
+       wait.until(ExpectedConditions.invisibilityOfAllElements(loader));
 
-       //Verify that you get your vehicle info successfully
+       //locate a contract and click on it
+       driver.findElement(By.linkText("Halim Smith")).click();
+
+       //wait until loading completes
+       wait.until(ExpectedConditions.invisibilityOfAllElements(loader));
+
+       /*//Verify that you get your vehicle info successfully
        String actualVehicleInfo = driver.findElement(By.xpath("//h1[@class='user-name']")).getText();
        String expectedVehicleInfo = "Halim Smith Vendor Driver Smith Muhammet Ali";
        Assert.assertTrue(actualVehicleInfo.contentEquals(expectedVehicleInfo),"verify vehicle info");
        System.out.println("expectedVehicleInfo = " + expectedVehicleInfo);
        System.out.println("actualVehicleInfo = " + actualVehicleInfo);
        Thread.sleep(3000);*/
-/*
-//       verify that you edit one vehicle contract info add new info and verify you made changes
+
+
+
+        //verify that you edit one vehicle contract info add new info and verify you made changes
 
        //locate edit button and click
        WebElement editButton = driver.findElement(By.xpath("//a[@title='Edit Vehicle Contract']"));
-       Actions actions = new Actions(driver);
        actions.moveToElement(editButton).click().perform();
        Thread.sleep(2000);
 
@@ -167,8 +181,8 @@ public class VyTrack_US8_05_04 extends TestBase {
        driver.findElement(By.xpath("(//button[@type='submit'])[1]")).click();
 
        //waiting for the loader is gone
-       WebDriverWait wait = new WebDriverWait(driver, 10);
-       WebElement loader= driver.findElement(By.cssSelector(".loader-mask>.loader-frame"));
+       wait = new WebDriverWait(driver, 10);
+       loader= driver.findElement(By.cssSelector(".loader-mask>.loader-frame"));
        wait.until(ExpectedConditions.invisibilityOfAllElements(loader));
 
        //locate and verify change message is displayed (be careful just a few seconds then message is gone
@@ -178,7 +192,7 @@ public class VyTrack_US8_05_04 extends TestBase {
 
        Assert.assertTrue(flashMessage.isDisplayed(), "add vehicle model message is displayed");
 
-*/
+
    }
 
 }
