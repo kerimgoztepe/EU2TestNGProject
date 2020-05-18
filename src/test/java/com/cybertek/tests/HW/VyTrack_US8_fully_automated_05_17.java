@@ -1,8 +1,10 @@
 package com.cybertek.tests.HW;
 
 import com.cybertek.pages.BasePage;
+import com.cybertek.pages.LoginPage;
 import com.cybertek.tests.TestBase;
 import com.cybertek.utilities.BrowserUtils;
+import com.cybertek.utilities.ConfigurationReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,9 +22,10 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
 
     @Test (description = "AC1")
     public void AC1() {
-        //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"(done in BeforeMethod)
-        //Use credentials to login (done in BeforeMethod)
-
+        //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"
+        //Use credentials to login
+        LoginPage loginPage = new LoginPage();
+        loginPage.login("salesmanager_username", "salesmanager_password");
 
 /*
         //hover over to Fleet module
