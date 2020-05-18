@@ -12,11 +12,15 @@ import java.util.List;
 public class LoginPage {
 
     public LoginPage(){
+
         PageFactory.initElements(Driver.get(),this);
     }
 
     //same with driver.findElement(By.id("prependedInput"));
-    @FindBy(id = "prependedInput")
+    @FindAll({
+            @FindBy(id = "prependedInput"),
+            @FindBy(name = "_username"),
+    })
     public WebElement usernameInput;
 
     @FindBy(id = "prependedInput2")

@@ -23,27 +23,24 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
     @Test (description = "AC1")
     public void AC1() {
         //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"
-        //Use credentials to login
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("salesmanager_username", "salesmanager_password");
+        //Use credentials to login (Before method in TestBase)
 
-/*
         //hover over to Fleet module
         //Hover over to Vehicle Contracts module and click
 
-        BasePage basePage = new BasePage();
-        basePage.navigateToModule("Fleet", "Vehicle Contracts");
+        //BasePage basePage = new BasePage();
+        navigateToModule("Fleet", "Vehicle Contracts");
 
         //wait until loading completes
         //wait.until(ExpectedConditions.invisibilityOfAllElements(loader));
         BrowserUtils.waitForPageToLoad(10);
 
         //get title and print
-        String pageSubTitle = basePage.getPageSubTitle();
+        String pageSubTitle = getPageSubTitle();
 
         //verify to see all vehicle contracts as a list
         Assert.assertEquals(pageSubTitle, "All Vehicle Contract", "verify to access Vehicle Contract and see list");
-*/
+
 
     }
     /***
@@ -51,19 +48,20 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
      */
     @Test (description = "AC2")
     public void AC2(){
-/*
+
         //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"
-        //Use credentials to login (done in BeforeMethod)
+        //Use credentials to login
+
 
         //hover over to Fleet module
         //Hover over to Vehicle Contracts module and click
-        basePage.navigateToModule("Fleet", "Vehicle Contracts");
+        navigateToModule("Fleet", "Vehicle Contracts");
 
         //wait until loading completes
         BrowserUtils.waitForPageToLoad(10);
 
         //Click on Create Vehicle Contract button
-*/
+
 
     }
 }

@@ -1,5 +1,6 @@
 package com.cybertek.tests;
 
+import com.cybertek.pages.BasePage;
 import com.cybertek.pages.LoginPage;
 import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
@@ -11,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class TestBase extends BasePage {
 
     protected WebDriver driver;
     protected Actions actions;
@@ -25,6 +26,9 @@ public class TestBase {
         actions = new Actions(driver);
         wait = new WebDriverWait(driver,10);
         driver.get(ConfigurationReader.get("url"));
+        /*LoginPage loginPage = new LoginPage();
+        loginPage.login(ConfigurationReader.get("storemanager_username"),ConfigurationReader.get("storemanager_password"));*/
+
 
     }
 
