@@ -11,18 +11,19 @@ import org.testng.annotations.Test;
 public class PageSubtitleTest extends TestBase {
 
     /**
-     * Test case
+     * Test case:
      * Open browser
      * Login as a Driver
      * Verify that page subtitle is Quick Launchpad
      * Go to Activities -> Calendar Events
-     * verify that page subtitle is Calendar Events
+     * Verify that page subtitle is Calendar Events
      */
 
     @Test
     public void test1(){
-        LoginPage loginPage = new LoginPage();
 
+        //Login as a Driver
+        LoginPage loginPage = new LoginPage();
         loginPage.loginAsDriver();
         //Same thing with thread.sleep(3000)
         //BrowserUtils.waitFor(2);
@@ -31,17 +32,15 @@ public class PageSubtitleTest extends TestBase {
         String expectedSubtitle = "Quick Launchpad";
 
         String actualSubtitle = dashboardPage.getPageSubTitle();
-
+        //Verify that page subtitle is Quick Launchpad
         Assert.assertEquals(actualSubtitle,expectedSubtitle,"verify subtitles");
-
+        //Go to Activities -> Calendar Events
         dashboardPage.navigateToModule("Activities","Calendar Events");
 
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         BrowserUtils.waitFor(2);
-
+        //Verify that page subtitle is Calendar Events
         Assert.assertEquals(calendarEventsPage.getPageSubTitle(),"Calendar Events","verify subtitles");
-
-
 
     }
 

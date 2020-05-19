@@ -108,14 +108,6 @@ public class RepeatOptionsTests extends TestBase {
         //Verify that repeat options are Daily, Weekly, Monthly,Yearly(in this order)
         Assert.assertEquals(actualList,expectedList,"verify dropdown options");
 
-
-
-
-
-
     }
-
-
-
 
 }
