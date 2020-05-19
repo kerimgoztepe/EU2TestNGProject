@@ -25,32 +25,35 @@ public class RepeatOptionsTests extends TestBase {
     Click on create calendar events
     Click on repeat
     Verify that repeat every days is checked
-    verify that repeat weekday is not checked
+    Verify that repeat weekday is not checked
     * */
 
     @Test
     public void test1(){
+        //Open browser
+        //Login as driver
         LoginPage loginPage = new LoginPage();
-
-
         loginPage.loginAsDriver();
 
+        //Go to Activities->Calendar Events
         DashboardPage dashboardPage = new DashboardPage();
-
         dashboardPage.navigateToModule("Activities","Calendar Events");
 
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         BrowserUtils.waitFor(2);
+        //Click on create calendar events
         calendarEventsPage.waitUntilLoaderScreenDisappear();
         calendarEventsPage.createCalendarEvent.click();
 
         CreateCalendarEventsPage createCalendarEventsPage = new CreateCalendarEventsPage();
-
         BrowserUtils.waitFor(2);
+
         createCalendarEventsPage.waitUntilLoaderScreenDisappear();
         createCalendarEventsPage.repeat.click();
 
+        //Verify that repeat every days is checked
         Assert.assertTrue(createCalendarEventsPage.days.isSelected(),"Verify days rb is checked");
+        //Verify that repeat weekday is not checked
         Assert.assertFalse(createCalendarEventsPage.weekday.isSelected(),"Verfiy weekday is NOT checked");
 
     }
@@ -67,20 +70,24 @@ public class RepeatOptionsTests extends TestBase {
 
     @Test
     public void test2(){
+        //Open browser (TestBase does it)
+        //Login as driver
         new LoginPage().loginAsDriver();
-
+        //Go to Activities->Calendar Events
         new DashboardPage().navigateToModule("Activities","Calendar Events");
 
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         BrowserUtils.waitFor(2);
-
+        //wait until load bar disappears
         calendarEventsPage.waitUntilLoaderScreenDisappear();
+        //Click on create calendar events
         calendarEventsPage.createCalendarEvent.click();
 
         CreateCalendarEventsPage createCalendarEventsPage = new CreateCalendarEventsPage();
-
         BrowserUtils.waitFor(2);
+
         createCalendarEventsPage.waitUntilLoaderScreenDisappear();
+        //Click on repeat
         createCalendarEventsPage.repeat.click();
 
         Select repeatDropdown = createCalendarEventsPage.repeatOptionsList();
@@ -98,7 +105,7 @@ public class RepeatOptionsTests extends TestBase {
 
         //getting list with ready method
         List<String> actualList2 = BrowserUtils.getElementsText(actualOptions);
-
+        //Verify that repeat options are Daily, Weekly, Monthly,Yearly(in this order)
         Assert.assertEquals(actualList,expectedList,"verify dropdown options");
 
 
