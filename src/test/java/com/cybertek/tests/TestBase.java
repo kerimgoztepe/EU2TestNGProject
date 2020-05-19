@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase extends BasePage {
+public class TestBase {
 
     protected WebDriver driver;
     protected Actions actions;

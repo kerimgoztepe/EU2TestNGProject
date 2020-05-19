@@ -20,7 +20,7 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
      * and able to see all vehicle contracts on the grid
      */
 
-    @Test (description = "AC1")
+    /*@Test (description = "AC1")
     public void AC1() {
         //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"
         //Use credentials to login (Before method in TestBase)
@@ -43,9 +43,9 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
 
 
     }
-    /***
+    *//***
      * AC2: Verify that authorized user should be able to create Vehicle contract
-     */
+     *//*
     @Test (description = "AC2")
     public void AC2(){
 
@@ -63,5 +63,5 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
         //Click on Create Vehicle Contract button
 
 
-    }
+    }*/
 }
