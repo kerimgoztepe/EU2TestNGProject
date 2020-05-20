@@ -6,10 +6,6 @@ import com.cybertek.pages.LoginPage;
 import com.cybertek.tests.TestBase;
 import com.cybertek.utilities.BrowserUtils;
 import com.cybertek.utilities.ConfigurationReader;
-import com.google.common.base.Verify;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -43,7 +39,7 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
         String pageSubTitle = dashboardPage.getPageSubTitle();
 
         //verify to see all vehicle contracts as a list
-        Assert.assertEquals(pageSubTitle, "All Vehicle Contract", "verify to access Vehicle Contract and see list");
+        Assert.assertEquals(pageSubTitle, "ll Vehicle Contract", "verify to access Vehicle Contract and see list");
 
         extentLogger = report.createTest("Positive login test");
 
