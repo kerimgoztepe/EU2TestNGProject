@@ -53,7 +53,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>May 20, 2020 10:16:42 PM</span>
+			<span class='label blue darken-3 suite-start-time'>May 20, 2020 11:08:58 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -134,15 +134,15 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active  fail' status='fail' bdd='false' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>AC1 Test</span>
-						<span class='test-time'>May 20, 2020 10:16:50 PM</span>
+						<span class='test-name'>Wrong Username Test</span>
+						<span class='test-time'>May 20, 2020 11:09:06 PM</span>
 						<span class='test-status right fail'>fail</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>May 20, 2020 10:16:50 PM</span>
-	<span class='label end-time'>May 20, 2020 10:16:59 PM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 9s+311ms</span>
+	<span class='label start-time'>May 20, 2020 11:09:06 PM</span>
+	<span class='label end-time'>May 20, 2020 11:09:08 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 2s+272ms</span>
 </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
@@ -154,24 +154,57 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr class='log' status='fail'>
-				<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-				<td class='timestamp'>10:16:59 PM</td>
+			<tr class='log' status='info'>
+				<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+				<td class='timestamp'>11:09:06 PM</td>
 				<td class='step-details'>
-						AC1
+						Enter username: someusername
+					
+				</td>
+			</tr>
+			<tr class='log' status='info'>
+				<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+				<td class='timestamp'>11:09:06 PM</td>
+				<td class='step-details'>
+						Enter password: UserUser123
+					
+				</td>
+			</tr>
+			<tr class='log' status='info'>
+				<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+				<td class='timestamp'>11:09:08 PM</td>
+				<td class='step-details'>
+						Click login button
+					
+				</td>
+			</tr>
+			<tr class='log' status='info'>
+				<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+				<td class='timestamp'>11:09:08 PM</td>
+				<td class='step-details'>
+						verify page url
 					
 				</td>
 			</tr>
 			<tr class='log' status='fail'>
 				<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-				<td class='timestamp'>10:16:59 PM</td>
+				<td class='timestamp'>11:09:08 PM</td>
 				<td class='step-details'>
-						<textarea disabled class="code-block">java.lang.AssertionError: verify to access Vehicle Contract and see list expected [ll Vehicle Contract] but found [All Vehicle Contract]
+						wrongUsernameTest
+					
+				</td>
+			</tr>
+			<tr class='log' status='fail'>
+				<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+				<td class='timestamp'>11:09:08 PM</td>
+				<td class='step-details'>
+						<textarea disabled class="code-block">java.lang.AssertionError: expected [https://qa3.vytrack.com/user/login] but found [https://qa3.vytrack.com/]
 	at org.testng.Assert.fail(Assert.java:97)
 	at org.testng.Assert.assertEqualsImpl(Assert.java:136)
 	at org.testng.Assert.assertEquals(Assert.java:118)
 	at org.testng.Assert.assertEquals(Assert.java:575)
-	at com.cybertek.tests.HW.VyTrack_US8_fully_automated_05_17.AC1(VyTrack_US8_fully_automated_05_17.java:46)
+	at org.testng.Assert.assertEquals(Assert.java:585)
+	at com.cybertek.tests.day17_extent_reports.NegativeLoginTestWithReport.wrongUsernameTest(NegativeLoginTestWithReport.java:48)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -263,15 +296,16 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>May 20, 2020 10:16:50 PM</td>
-										<td class='linked' test-id='1'>AC1 Test</td>
+										<td>May 20, 2020 11:09:06 PM</td>
+										<td class='linked' test-id='1'>Wrong Username Test</td>
 										<td>
-											<textarea disabled class="code-block">java.lang.AssertionError: verify to access Vehicle Contract and see list expected [ll Vehicle Contract] but found [All Vehicle Contract]
+											<textarea disabled class="code-block">java.lang.AssertionError: expected [https://qa3.vytrack.com/user/login] but found [https://qa3.vytrack.com/]
 	at org.testng.Assert.fail(Assert.java:97)
 	at org.testng.Assert.assertEqualsImpl(Assert.java:136)
 	at org.testng.Assert.assertEquals(Assert.java:118)
 	at org.testng.Assert.assertEquals(Assert.java:575)
-	at com.cybertek.tests.HW.VyTrack_US8_fully_automated_05_17.AC1(VyTrack_US8_fully_automated_05_17.java:46)
+	at org.testng.Assert.assertEquals(Assert.java:585)
+	at com.cybertek.tests.day17_extent_reports.NegativeLoginTestWithReport.wrongUsernameTest(NegativeLoginTestWithReport.java:48)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -336,19 +370,19 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>May 20, 2020 10:16:42 PM</div>
+					<div class='panel-lead'>May 20, 2020 11:08:58 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>May 20, 2020 10:17:02 PM</div>
+			 		<div class='panel-lead'>May 20, 2020 11:09:11 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>0h 0m 20s+383ms</div>
+					<div class='panel-lead'>0h 0m 13s+293ms</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -366,7 +400,7 @@
 							</tr>
 							<tr>
 								<td>Browser</td>
-								<td>chrome</td>
+								<td>chrome-headless</td>
 							</tr>
 							<tr>
 								<td>Tester</td>
@@ -415,7 +449,7 @@
 		</script>
 		<script>
 			var timeline = {
-			        "AC1 Test":9.311
+			        "Wrong Username Test":2.272
 			};
 		</script>
 	

@@ -23,10 +23,11 @@ public class NegativeLoginTestWithReport extends TestBase {
         loginPage.loginBtn.click();
         extentLogger.info("click login button");
 
-        extentLogger.info("Verify page url");
         Assert.assertEquals(driver.getCurrentUrl(),"https://qa3.vytrack.com/user/login");
+        extentLogger.info("Verify page url");
+
         //we put after assertion so if the assertion fails, it will not send pass to report
-        extentLogger.pass("Wrong Passord Test is passed");
+        extentLogger.pass("Wrong Password Test is passed");
     }
 
     @Test
