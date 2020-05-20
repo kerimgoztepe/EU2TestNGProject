@@ -39,9 +39,9 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
         String pageSubTitle = dashboardPage.getPageSubTitle();
 
         //verify to see all vehicle contracts as a list
-        Assert.assertEquals(pageSubTitle, "ll Vehicle Contract", "verify to access Vehicle Contract and see list");
+        Assert.assertEquals(pageSubTitle, "All Vehicle Contract", "verify to access Vehicle Contract and see list");
 
-        extentLogger = report.createTest("Positive login test");
+        extentLogger = report.createTest("Access Vehicle Contract page test");
 
     }
 
@@ -68,6 +68,6 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
 
         //Click on Create Vehicle Contract button
 
-        extentLogger = report.createTest("Positive login test");
+        extentLogger = report.createTest("Create Vehicle Contract test");
     }
 }
