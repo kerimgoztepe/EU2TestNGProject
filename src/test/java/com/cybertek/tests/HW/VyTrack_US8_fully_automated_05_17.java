@@ -23,8 +23,12 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
 
     @Test(description = "AC1")
     public void AC1() {
+        extentLogger = report.createTest("AC1 Test");
+
         //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"
         //Use credentials to login (Before method in TestBase)
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(ConfigurationReader.get("storemanager_username"),ConfigurationReader.get("storemanager_password"));
 
         //hover over to Fleet module
         //Hover over to Vehicle Contracts module and click
@@ -41,6 +45,7 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
         //verify to see all vehicle contracts as a list
         Assert.assertEquals(pageSubTitle, "All Vehicle Contract", "verify to access Vehicle Contract and see list");
 
+        extentLogger = report.createTest("Positive login test");
 
     }
 
@@ -50,10 +55,12 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
 
     @Test (description = "AC2")
     public void AC2(){
+        extentLogger = report.createTest("AC2 Test");
 
         //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"
         //Use credentials to login
-
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(ConfigurationReader.get("storemanager_username"),ConfigurationReader.get("storemanager_password"));
 
         //hover over to Fleet module
         //Hover over to Vehicle Contracts module and click
@@ -65,6 +72,6 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
 
         //Click on Create Vehicle Contract button
 
-
+        extentLogger = report.createTest("Positive login test");
     }
 }
