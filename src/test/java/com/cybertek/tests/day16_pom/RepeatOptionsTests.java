@@ -77,14 +77,14 @@ public class RepeatOptionsTests extends TestBase {
         new DashboardPage().navigateToModule("Activities","Calendar Events");
 
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
-        BrowserUtils.waitFor(2);
+        //BrowserUtils.waitFor(3);
         //wait until load bar disappears
         calendarEventsPage.waitUntilLoaderScreenDisappear();
         //Click on create calendar events
         calendarEventsPage.createCalendarEvent.click();
 
         CreateCalendarEventsPage createCalendarEventsPage = new CreateCalendarEventsPage();
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(3);
 
         createCalendarEventsPage.waitUntilLoaderScreenDisappear();
         //Click on repeat
