@@ -69,8 +69,8 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
 
         //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"
         //Use credentials to login
-        extentLogger = report.createTest("Login as storemanager_username");
-        new LoginPage().login(ConfigurationReader.get("storemanager_username"),ConfigurationReader.get("storemanager_password"));
+        extentLogger = report.createTest("Login as salesmanager_username");
+        new LoginPage().login(ConfigurationReader.get("salesmanager_username"),ConfigurationReader.get("salesmanager_password"));
 
         //Hover over to Fleet module
         //Hover over to Vehicle Contracts module and click
@@ -86,8 +86,10 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
         WebElement create_vehicle_contract = driver.findElement(By.xpath("//*[@title='Create Vehicle Contract']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].click();",create_vehicle_contract);
-        //actions.moveToElement(create_vehicle_contract).pause(1000).click().perform();
+        //Thread.sleep(5000);
+
         BrowserUtils.waitForPageToLoad(10);
+        //dashboardPage.waitUntilLoaderScreenDisappear();
 
         //Verify to see Create Vehicle Contract page
         extentLogger = report.createTest("Verify to see Create Vehicle Contract page");
@@ -97,12 +99,16 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
         extentLogger = report.createTest("Enter valid info to empty spaces");
         extentLogger = report.createTest("Enter some name");
         driver.findElement(By.xpath("//*[@data-name='field__responsible']")).sendKeys("some name");
+        Thread.sleep(1000);
         extentLogger = report.createTest("Enter 12345");
         driver.findElement(By.xpath("//*[@data-name='field__activation-cost']")).sendKeys("12345");
+        Thread.sleep(1000);
         extentLogger = report.createTest("Enter Halim Driver");
         driver.findElement(By.xpath("//*[@data-name='field__driver']")).sendKeys("Halim Driver");
+        Thread.sleep(1000);
         extentLogger = report.createTest("Click on Save and Close");
         driver.findElement(By.xpath("//button[@class='btn btn-success action-button']")).click();
+        dashboardPage.waitUntilLoaderScreenDisappear();
 
         //Verify to see your newly created contract page
         extentLogger = report.createTest("Verify to see your newly created contract page");
