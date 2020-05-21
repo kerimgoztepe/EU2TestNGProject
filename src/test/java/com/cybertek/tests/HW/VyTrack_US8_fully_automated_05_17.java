@@ -18,7 +18,7 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
      */
 
     @Test(description = "AC1")
-    public void AC1() {
+    public void someTestName() {
         extentLogger = report.createTest("AC1 Test");
 
         //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"

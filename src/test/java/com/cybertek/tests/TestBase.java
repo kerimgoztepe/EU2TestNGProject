@@ -48,12 +48,12 @@ public class TestBase {
         report.attachReporter(htmlReporter);
 
         //title in report
-        htmlReporter.config().setReportName("VyTrack Smoke Test");
+        htmlReporter.config().setReportName("App Smoke Test");
 
         //set environment info
         report.setSystemInfo("Environment", "QA");
         report.setSystemInfo("Browser", ConfigurationReader.get("browser"));
-        report.setSystemInfo("Tester", "Cybertek Testers");
+        report.setSystemInfo("Tester", "The Company");
     }
 
     @BeforeMethod
