@@ -45,7 +45,13 @@ public class LoginPage {
         loginBtn.click();
 
     }
+    public void loginAs(String user){
+        String username = ConfigurationReader.get(user +"_username");
+        String password = ConfigurationReader.get(user+"_password");
+        usernameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginBtn.click();
 
-
+    }
 
 }

@@ -22,6 +22,8 @@ public class PageSubtitleTest extends TestBase {
     @Test
     public void test1(){
 
+        extentLogger = report.createTest("Page Subtitle Test");
+
         //Login as a Driver
         LoginPage loginPage = new LoginPage();
         loginPage.loginAsDriver();
@@ -42,6 +44,7 @@ public class PageSubtitleTest extends TestBase {
         //Verify that page subtitle is Calendar Events
         Assert.assertEquals(calendarEventsPage.getPageSubTitle(),"Calendar Events","verify subtitles");
 
+        extentLogger.pass("PASS: Page Subtitle Test");
     }
 
 }
