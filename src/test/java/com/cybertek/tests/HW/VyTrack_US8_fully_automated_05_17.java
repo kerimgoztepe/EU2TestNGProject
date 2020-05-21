@@ -69,7 +69,6 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
 
         //navigate to "https://qa1.vytrack.com/entity/Extend_Entity_VehicleContract"
         //Use credentials to login
-        //LoginPage loginPage = new LoginPage();
         extentLogger = report.createTest("Login as storemanager_username");
         new LoginPage().login(ConfigurationReader.get("storemanager_username"),ConfigurationReader.get("storemanager_password"));
 
@@ -103,7 +102,7 @@ public class VyTrack_US8_fully_automated_05_17 extends TestBase {
         extentLogger = report.createTest("Enter Halim Driver");
         driver.findElement(By.xpath("//*[@data-name='field__driver']")).sendKeys("Halim Driver");
         extentLogger = report.createTest("Click on Save and Close");
-        driver.findElement(By.xpath("(//*[@type='submit'])[1]")).click();
+        driver.findElement(By.xpath("//button[@class='btn btn-success action-button']")).click();
 
         //Verify to see your newly created contract page
         extentLogger = report.createTest("Verify to see your newly created contract page");
