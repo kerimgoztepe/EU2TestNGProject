@@ -12,26 +12,38 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
+    /***
+     * abstract bc not a stand alone page so no need to create an object we don't want this page to create object
+     *     our POM structure, other pages besides LoginPage share common values. All other pages have same navigation menu
+     *     So all pages extend our BasePage and use same methods from BasePage...
+     *     We locate all the common elements and functionality for all the pages/modules here related to application.
+     *     All other pages that have those functionality will extend the BasePage. it is application specific.
+     */
 
     @FindBy(css = "div[class='loader-mask shown']")
     @CacheLookup
     protected WebElement loaderMask;
 
     @FindBy(css = "h1[class='oro-subtitle']")
+    @CacheLookup
     public WebElement pageSubTitle;
 
     @FindBy(css = "#user-menu > a")
+    @CacheLookup
     public WebElement userName;
 
     @FindBy(linkText = "Logout")
+    @CacheLookup
     public WebElement logOutLink;
 
     @FindBy(linkText = "My User")
+    @CacheLookup
     public WebElement myUser;
 
     public BasePage() {
         PageFactory.initElements(Driver.get(), this);
     }
+        //PageFactory is a class which  has a static initElements method that initialize all WebElements
 
 
     /**

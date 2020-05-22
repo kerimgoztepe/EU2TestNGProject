@@ -3,11 +3,7 @@ package com.cybertek.pages;
 import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.*;
 
 
 public class LoginPage {
@@ -15,18 +11,22 @@ public class LoginPage {
     public LoginPage(){
         PageFactory.initElements(Driver.get(),this);
     }
+        //PageFactory is a class which  has a static initElements method that initialize all WebElements
 
     //same with driver.findElement(By.id("prependedInput"));
     @FindAll({
             @FindBy(id = "prependedInput"),
             @FindBy(name = "_username"),
     })
+    @CacheLookup
     public WebElement usernameInput;
 
     @FindBy(id = "prependedInput2")
+    @CacheLookup
     public WebElement passwordInput;
 
     @FindBy(id = "_submit")
+    @CacheLookup
     public WebElement loginBtn;
 
     public void login(String usernameStr,String passwordStr){
