@@ -117,12 +117,29 @@ public class HW_05_21 extends TestBase {
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
         new DashboardPage().navigateToModule("Activities","Calendar Events");
 
+
         //Verify that number of calendar events (rows in the table) is equals to number of records
         extentLogger = report.createTest("Verification of number of calendar events (rows in the table) is equals to number of records test");
-        Assert.assertEquals(new CalendarEventsPage().tableRows.size(),25,"verify table rows equals");
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        BrowserUtils.waitForClickablility(calendarEventsPage.rightArrow,10);
+        //new DashboardPage().waitUntilLoaderScreenDisappear();
+        System.out.println("calendarEventsPage.totalPagesNo.getText() = " + calendarEventsPage.totalPagesNo.getText());
+        String pageNoAsString = calendarEventsPage.totalPagesNo.getText().substring(3, 5);
+        int pageNoAsInt = Integer.parseInt(pageNoAsString);
+        int rowNo = 0;
+        for (int i = 1; i <= pageNoAsInt; i++) {
+            rowNo = rowNo + calendarEventsPage.tableRows.size();
+            calendarEventsPage.rightArrow.click();
+            calendarEventsPage.waitUntilLoaderScreenDisappear();
+        }
+        //System.out.println("rowNo = " + rowNo);
+        calendarEventsPage.totalRecordNo.getText()
+
+
+       Assert.assertEquals(new CalendarEventsPage().tableRows,,"verify table rows equals");
 
         extentLogger.pass("PASS : Verify that number of calendar events (rows in the table) is equals to number of records (25) test");
 
-        math hesap gerekli
+
     }
 }

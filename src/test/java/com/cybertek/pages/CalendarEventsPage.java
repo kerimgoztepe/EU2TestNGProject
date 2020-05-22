@@ -31,6 +31,15 @@ public class CalendarEventsPage extends BasePage {
     @FindBy(xpath = "//tbody/tr")
     public List<WebElement> tableRows;
 
+    @FindBy(xpath = "//label[contains(text(),'of')][1]")
+    public WebElement totalPagesNo;
+
+    @FindBy(xpath = "//i[@class='fa-chevron-right hide-text']")
+    public  WebElement rightArrow;
+
+    @FindBy(xpath = "//label[contains(text(),'Total of 1562 records')]")
+    public WebElement totalRecordNo;
+
     /*public int tableRowsSize(WebElement driver){
         List<WebElement> elements = driver.findElements(By.xpath("//tbody/tr"));
         return elements.size();
