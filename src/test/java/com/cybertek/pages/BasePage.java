@@ -78,7 +78,6 @@ public abstract class BasePage {
     }
 
 
-
     public void logOut(){
         BrowserUtils.waitFor(2);
         BrowserUtils.clickWithJS(userName);
