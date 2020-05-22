@@ -56,7 +56,6 @@ public abstract class BasePage {
         return pageSubTitle.getText();
     }
 
-
     /**
      * Waits until loader screen present. If loader screen will not pop up at all,
      * NoSuchElementException will be handled  bu try/catch block
