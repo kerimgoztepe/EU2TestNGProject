@@ -132,14 +132,25 @@ public class HW_05_21 extends TestBase {
             calendarEventsPage.rightArrow.click();
             calendarEventsPage.waitUntilLoaderScreenDisappear();
         }
-        //System.out.println("rowNo = " + rowNo);
-        calendarEventsPage.totalRecordNo.getText()
+
+        //System.out.println("calendarEventsPage.totalRecordNo.getText() = " + calendarEventsPage.totalRecordNo.getText().substring(9,13));
 
 
-       Assert.assertEquals(new CalendarEventsPage().tableRows,,"verify table rows equals");
+        Assert.assertEquals(rowNo,Integer.parseInt(calendarEventsPage.totalRecordNo.getText().substring(9,13)),"verify number of calendar events (rows in the table) is equals to number of total records");
 
         extentLogger.pass("PASS : Verify that number of calendar events (rows in the table) is equals to number of records (25) test");
 
 
     }
+    /***
+     * Test Case #5
+     * 1. Go to “https://qa1.vytrack.com/"
+     * 2. Login as a store manager
+     * 3. Navigate to “Activities -> Calendar Events”
+     * 4. Click on the top checkbox to select all
+     * 5. Verify that all calendar events were selected
+     */
+
+
+
 }
