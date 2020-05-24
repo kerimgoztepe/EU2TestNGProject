@@ -11,11 +11,9 @@ public class ContactInfoPage extends BasePage {
     public WebElement fullName;
 
     @FindBy(xpath = "//a[@class='email']")
-    @CacheLookup
     public WebElement email;
 
     @FindBy(css = "a.phone")
-    @CacheLookup
     public WebElement phone;
 
 }

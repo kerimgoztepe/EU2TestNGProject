@@ -1,5 +1,6 @@
 package com.cybertek.pages;
 
+import com.cybertek.tests.day8_types_of_elements2.ListOfElements;
 import com.cybertek.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,32 +23,39 @@ public class CalendarEventsPage extends BasePage {
     public WebElement optionsButton;
 
     @FindBy(xpath = "//input[@class='input-widget']")
-    @CacheLookup
     public WebElement pageNumber;
 
     @FindBy(xpath = "//button[contains(@class,'btn dropdown-toggle')]")
-    @CacheLookup
     public WebElement viewPerPageNo;
 
     @FindBy(xpath = "//tbody/tr")
-    @CacheLookup
     public List<WebElement> tableRows;
 
     @FindBy(xpath = "//label[contains(text(),'of')][1]")
-    @CacheLookup
     public WebElement totalPagesNo;
 
     @FindBy(xpath = "//i[@class='fa-chevron-right hide-text']")
-    @CacheLookup
     public  WebElement rightArrow;
 
-    @FindBy(xpath = "//label[contains(text(),'Total of 1562 records')]")
-    @CacheLookup
+    @FindBy(xpath = "//label[contains(text(),'Total of ')]")
     public WebElement totalRecordNo;
 
-    /*public int tableRowsSize(WebElement driver){
-        List<WebElement> elements = driver.findElements(By.xpath("//tbody/tr"));
-        return elements.size();
-    }*/
+    @FindBy(xpath = "//button[@class='btn btn-default btn-small dropdown-toggle']//input")
+    public WebElement checkBoxAll;
+
+    @FindBy(xpath = "//thead/tr/th[2]")
+    public WebElement headTitle;
+
+    @FindBy(xpath = "//thead/tr/th[4]")
+    public WebElement headStart;
+
+    /*@FindBy(xpath = "//i[@class='fa-filter hide-text']")
+    public WebElement filterBtn;*/
+
+    /*@FindBy(xpath = "//div[contains(text(),'Title')]")
+    public WebElement filterByTitleBtn;*/
+
+    /*@FindBy(xpath = "//input[@name='value']")
+    public WebElement filterInputBox;*/
 
 }
