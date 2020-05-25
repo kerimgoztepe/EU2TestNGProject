@@ -273,11 +273,13 @@ public class HW_05_21 extends TestBase {
 
                 //Assert.assertTrue(calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"), "verify row is selected");
 
-                if (calendarEventsPage.headTitle.getText().contains("Testers meeting") &
-                        calendarEventsPage.headStart.getText().contentEquals("Nov 27, 2019, 10:30 AM")) {
+                //BrowserUtils.waitForStaleElement(calendarEventsPage.headTitle);
+
+                if (calendarEventsPage.headTitle.getText().contains("Test event") &
+                        calendarEventsPage.headStart.getText().contentEquals("Apr 4, 2020, 9:24 AM")) {
                     //System.out.println("page no:" + pageNoAsInt + " and row no:" + calendarEventsPage.tableRows.get(calendarEventsPage.tableRows.size()) + " is NOT selected");                    //calendarEventsPage.rightArrow.click();
                     //calendarEventsPage.waitUntilLoaderScreenDisappear();
-
+                    //calendarEventsPage.tableRows.get(k).click();
                     break;
                 }
                 calendarEventsPage.tableRows.get(k).click();
@@ -288,18 +290,61 @@ public class HW_05_21 extends TestBase {
             calendarEventsPage.waitUntilLoaderScreenDisappear();
         }
 
-        /*//Click on Filter Button
-        extentLogger = report.createTest("Click on Filter Button test");
-        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
-        calendarEventsPage.filterBtn.click();
-        //Click on Filter by Title button
-        extentLogger = report.createTest("Filter by Title Button test");
-        calendarEventsPage.filterByTitleBtn.click();
+        CalendarEventsInfoPage calendarEventsInfoPage = new CalendarEventsInfoPage();
 
-        //Send keys "Testers meeting" and click Update button
-        extentLogger = report.createTest("Send keys \"Testers meeting\" and click Update button test");
-        calendarEventsPage.filterInputBox.sendKeys("Testers meeting", Keys.ENTER);*/
+        String expectedTitle = "Testers meeting";
+        String actualTitle = calendarEventsInfoPage.titleInfo.getText();
 
+        extentLogger.info("Verify title is "+ expectedTitle);
+        Assert.assertEquals(actualTitle,expectedTitle,"Verify title is "+expectedTitle);
+
+        String expectedDescription = "This is a a weekly testers meeting";
+        String actualDescription = calendarEventsInfoPage.descriptionInfo.getText();
+
+        extentLogger.info("Verify description is "+ expectedDescription);
+        Assert.assertEquals(actualDescription,expectedDescription,"Verify description is "+expectedDescription);
+
+        String expectedStart = "Nov 27, 2019, 9:30 AM";
+        String actualStart = calendarEventsInfoPage.startInfo.getText();
+
+        extentLogger.info("Verify start is "+ expectedStart);
+        Assert.assertEquals(actualStart,expectedStart,"Verify start is "+expectedStart);
+
+        String expectedEnd = "Nov 27, 2019, 10:30 AM";
+        String actualEnd = calendarEventsInfoPage.endInfo.getText();
+
+        extentLogger.info("Verify end is "+ expectedEnd);
+        Assert.assertEquals(actualEnd,expectedEnd,"Verify end is "+expectedEnd);
+
+        String expectedAllDayEvent = "No";
+        String actualAllDayEvent = calendarEventsInfoPage.allDayEventInfo.getText();
+
+        extentLogger.info("Verify All-Day Event info is "+ expectedAllDayEvent);
+        Assert.assertEquals(actualAllDayEvent,expectedAllDayEvent,"Verify All-Day Event info is "+expectedAllDayEvent);
+
+        String expectedOrganizer = "Stephan Haley";
+        String actualOrganizer = calendarEventsInfoPage.organizerInfo.getText();
+
+        extentLogger.info("Verify Organizer is "+ expectedOrganizer);
+        Assert.assertEquals(actualOrganizer,expectedOrganizer,"Verify Organizer is "+expectedOrganizer);
+
+        String expectedGuests = "Tom Smith";
+        String actualGuests = calendarEventsInfoPage.guestsInfo.getText();
+
+        extentLogger.info("Verify Guests is "+ expectedGuests);
+        Assert.assertEquals(actualGuests,expectedGuests,"Verify Guests is "+expectedGuests);
+
+        String expectedRecurrence= "Weekly every 1 week on Wednesday";
+        String actualRecurrence = calendarEventsInfoPage.recurrenceInfo.getText();
+
+        extentLogger.info("Verify Recurrence is "+ expectedRecurrence);
+        Assert.assertEquals(actualRecurrence,expectedRecurrence,"Verify Recurrence is "+expectedRecurrence);
+
+        String expectedCallViaHangout= "No";
+        String actualCallViaHangout = calendarEventsInfoPage.callViaHangoutInfo.getText();
+
+        extentLogger.info("Verify Call via Hangout is "+ expectedCallViaHangout);
+        Assert.assertEquals(actualCallViaHangout,expectedCallViaHangout,"Verify Call via Hangout is "+expectedCallViaHangout);
 
         extentLogger.pass("PASS : Verify that predefined Testers Meeting is displayed test");
 
