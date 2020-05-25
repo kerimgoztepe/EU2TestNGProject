@@ -4,8 +4,7 @@ import com.cybertek.pages.*;
 import com.cybertek.tests.TestBase;
 import com.cybertek.utilities.BrowserUtils;
 import com.cybertek.utilities.ConfigurationReader;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -248,103 +247,106 @@ public class HW_05_21 extends TestBase {
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
-        extentLogger = report.createTest("Login as a store manager test");
+        extentLogger.info("Login as a store manager test");
         new LoginPage().loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
-        extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
+        extentLogger.info("Navigate to “Activities -> Calendar Events” test");
         new DashboardPage().navigateToModule("Activities", "Calendar Events");
 
         //check all rows for Testers meeting with the Start date of Nov 27, 2019, 9:30 AM and end date of Nov 27, 2019, 10:30 AM
-        extentLogger = report.createTest("check all rows for Testers meeting test");
+        extentLogger.info("check all rows for Testers meeting test");
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         BrowserUtils.waitForClickablility(calendarEventsPage.rightArrow, 10);
 
         String pageNoAsString = calendarEventsPage.totalPagesNo.getText();
         pageNoAsString = pageNoAsString.substring(3, pageNoAsString.length() - 2);
         int pageNoAsInt = Integer.parseInt(pageNoAsString);
-        int rowNo = 0;
-        for (int i = 1; i <= pageNoAsInt; i++) {
-            rowNo = rowNo + calendarEventsPage.tableRows.size();
+        //int rowNo = 0;
+        String expectedEventInfo = "Test event Stephan Haley Apr 4, 2020, 9:23 AM Apr 4, 2020, 10:23 AM No N/A Not responded";
 
-            for (int k = 0; k < calendarEventsPage.tableRows.size(); k++) {
+        //boolean b = false;
 
-                //System.out.println("row is selected = " + calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"));
+        label:
 
-                //Assert.assertTrue(calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"), "verify row is selected");
+        //while (b=false) {
 
-                //BrowserUtils.waitForStaleElement(calendarEventsPage.headTitle);
+            for (int i = 0; i < pageNoAsInt; i++) {
 
-                if (calendarEventsPage.headTitle.getText().contains("Test event") &
-                        calendarEventsPage.headStart.getText().contentEquals("Apr 4, 2020, 9:24 AM")) {
-                    //System.out.println("page no:" + pageNoAsInt + " and row no:" + calendarEventsPage.tableRows.get(calendarEventsPage.tableRows.size()) + " is NOT selected");                    //calendarEventsPage.rightArrow.click();
-                    //calendarEventsPage.waitUntilLoaderScreenDisappear();
-                    //calendarEventsPage.tableRows.get(k).click();
-                    break;
+
+                //rowNo = rowNo + calendarEventsPage.tableRows.size();
+
+
+                for (int k = 0; k < calendarEventsPage.tableRows.size(); k++) {
+
+                    if (calendarEventsPage.tableRows.get(k).getText().contains(expectedEventInfo)) {
+                        System.out.println("tableRows.get(k).getText() = " + calendarEventsPage.tableRows.get(k).getText());
+                        calendarEventsPage.tableRows.get(k).click();
+                        calendarEventsPage.waitUntilLoaderScreenDisappear();
+                        //b = true;
+                        break label;
+                    }
                 }
-                calendarEventsPage.tableRows.get(k).click();
-                break;
+                calendarEventsPage.rightArrow.click();
+                calendarEventsPage.waitUntilLoaderScreenDisappear();
             }
 
-            calendarEventsPage.rightArrow.click();
-            calendarEventsPage.waitUntilLoaderScreenDisappear();
-        }
 
         CalendarEventsInfoPage calendarEventsInfoPage = new CalendarEventsInfoPage();
 
-        String expectedTitle = "Testers meeting";
+        String expectedTitle = "Title Test event";
         String actualTitle = calendarEventsInfoPage.titleInfo.getText();
 
-        extentLogger.info("Verify title is "+ expectedTitle);
-        Assert.assertEquals(actualTitle,expectedTitle,"Verify title is "+expectedTitle);
+        extentLogger.info("Verify title is " + expectedTitle);
+        Assert.assertEquals(actualTitle, expectedTitle, "Verify title is ");
 
-        String expectedDescription = "This is a a weekly testers meeting";
+        String expectedDescription = " Description some description";
         String actualDescription = calendarEventsInfoPage.descriptionInfo.getText();
 
-        extentLogger.info("Verify description is "+ expectedDescription);
-        Assert.assertEquals(actualDescription,expectedDescription,"Verify description is "+expectedDescription);
+        extentLogger.info("Verify description is " + expectedDescription);
+        Assert.assertEquals(actualDescription, expectedDescription, "Verify description is " + expectedDescription);
 
-        String expectedStart = "Nov 27, 2019, 9:30 AM";
+        String expectedStart = "Start Apr 4, 2020, 9:23 AM";
         String actualStart = calendarEventsInfoPage.startInfo.getText();
 
-        extentLogger.info("Verify start is "+ expectedStart);
-        Assert.assertEquals(actualStart,expectedStart,"Verify start is "+expectedStart);
+        extentLogger.info("Verify start is " + expectedStart);
+        Assert.assertEquals(actualStart, expectedStart, "Verify start is " + expectedStart);
 
-        String expectedEnd = "Nov 27, 2019, 10:30 AM";
+        String expectedEnd = "End Apr 4, 2020, 10:23 AM";
         String actualEnd = calendarEventsInfoPage.endInfo.getText();
 
-        extentLogger.info("Verify end is "+ expectedEnd);
-        Assert.assertEquals(actualEnd,expectedEnd,"Verify end is "+expectedEnd);
+        extentLogger.info("Verify end is " + expectedEnd);
+        Assert.assertEquals(actualEnd, expectedEnd, "Verify end is " + expectedEnd);
 
-        String expectedAllDayEvent = "No";
+        String expectedAllDayEvent = "All-Day Event No";
         String actualAllDayEvent = calendarEventsInfoPage.allDayEventInfo.getText();
 
-        extentLogger.info("Verify All-Day Event info is "+ expectedAllDayEvent);
-        Assert.assertEquals(actualAllDayEvent,expectedAllDayEvent,"Verify All-Day Event info is "+expectedAllDayEvent);
+        extentLogger.info("Verify All-Day Event info is " + expectedAllDayEvent);
+        Assert.assertEquals(actualAllDayEvent, expectedAllDayEvent, "Verify All-Day Event info is " + expectedAllDayEvent);
 
-        String expectedOrganizer = "Stephan Haley";
+        String expectedOrganizer = "Organizer Stephan Haley";
         String actualOrganizer = calendarEventsInfoPage.organizerInfo.getText();
 
-        extentLogger.info("Verify Organizer is "+ expectedOrganizer);
-        Assert.assertEquals(actualOrganizer,expectedOrganizer,"Verify Organizer is "+expectedOrganizer);
+        extentLogger.info("Verify Organizer is " + expectedOrganizer);
+        Assert.assertEquals(actualOrganizer, expectedOrganizer, "Verify Organizer is " + expectedOrganizer);
 
-        String expectedGuests = "Tom Smith";
+        /*String expectedGuests = "Tom Smith";
         String actualGuests = calendarEventsInfoPage.guestsInfo.getText();
 
-        extentLogger.info("Verify Guests is "+ expectedGuests);
-        Assert.assertEquals(actualGuests,expectedGuests,"Verify Guests is "+expectedGuests);
+        extentLogger.info("Verify Guests is " + expectedGuests);
+        Assert.assertEquals(actualGuests, expectedGuests, "Verify Guests is " + expectedGuests);
 
-        String expectedRecurrence= "Weekly every 1 week on Wednesday";
+        String expectedRecurrence = "Weekly every 1 week on Wednesday";
         String actualRecurrence = calendarEventsInfoPage.recurrenceInfo.getText();
 
-        extentLogger.info("Verify Recurrence is "+ expectedRecurrence);
-        Assert.assertEquals(actualRecurrence,expectedRecurrence,"Verify Recurrence is "+expectedRecurrence);
+        extentLogger.info("Verify Recurrence is " + expectedRecurrence);
+        Assert.assertEquals(actualRecurrence, expectedRecurrence, "Verify Recurrence is " + expectedRecurrence);*/
 
-        String expectedCallViaHangout= "No";
+        String expectedCallViaHangout = "No";
         String actualCallViaHangout = calendarEventsInfoPage.callViaHangoutInfo.getText();
 
-        extentLogger.info("Verify Call via Hangout is "+ expectedCallViaHangout);
-        Assert.assertEquals(actualCallViaHangout,expectedCallViaHangout,"Verify Call via Hangout is "+expectedCallViaHangout);
+        extentLogger.info("Verify Call via Hangout is " + expectedCallViaHangout);
+        Assert.assertEquals(actualCallViaHangout, expectedCallViaHangout, "Verify Call via Hangout is " + expectedCallViaHangout);
 
         extentLogger.pass("PASS : Verify that predefined Testers Meeting is displayed test");
 

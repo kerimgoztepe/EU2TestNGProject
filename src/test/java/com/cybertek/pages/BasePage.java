@@ -25,26 +25,22 @@ public abstract class BasePage {
     protected WebElement loaderMask;
 
     @FindBy(css = "h1[class='oro-subtitle']")
-    @CacheLookup
     public WebElement pageSubTitle;
 
     @FindBy(css = "#user-menu > a")
-    @CacheLookup
     public WebElement userName;
 
     @FindBy(linkText = "Logout")
-    @CacheLookup
     public WebElement logOutLink;
 
     @FindBy(linkText = "My User")
-    @CacheLookup
     public WebElement myUser;
 
     public BasePage() {
         PageFactory.initElements(Driver.get(), this);
     }
         //PageFactory is a class which  has a static initElements method that initialize all WebElements
-
+        //use findby here and driver connection...
 
     /**
      * @return page name, for example: Dashboard

@@ -6,7 +6,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-public class WebDriverFactory {
+public class WebDriverFactory {     // NOT Singleton...
     //Task:
     //write a static method that takes a string parameter name:browserType
     //based on the value of parameter

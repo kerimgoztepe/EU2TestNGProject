@@ -11,13 +11,13 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-public class Driver {
+public class Driver {                   //Singleton
 
-    private Driver() {}
+    private Driver() {}                 //private constructor cannot create obj and cannot extend...
 
     private static WebDriver driver;
-
-    public static WebDriver get() {
+                                        //Singleton design pattern
+    public static WebDriver get() {     //if has a WebDriver before use it if not bring me a driver from...
         if (driver == null) {
             String browser = ConfigurationReader.get("browser");
             switch (browser) {
