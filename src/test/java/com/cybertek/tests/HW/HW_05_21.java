@@ -11,6 +11,10 @@ import org.testng.annotations.Test;
 
 public class HW_05_21 extends TestBase {
 
+    LoginPage login = new LoginPage();
+    DashboardPage dashboardPage = new DashboardPage();
+    CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
     /***
      * Test case #1
      * 1. Go to “https://qa1.vytrack.com/"
@@ -26,12 +30,13 @@ public class HW_05_21 extends TestBase {
         //Go to “https://qa1.vytrack.com/"  (TestBase handles this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
-        LoginPage login = new LoginPage();
-        login.login(ConfigurationReader.get("storemanager_username"), ConfigurationReader.get("storemanager_password"));
+
+        login.loginAs("storemanager");
+                //login(ConfigurationReader.get("storemanager_username"), ConfigurationReader.get("storemanager_password"));
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
-        DashboardPage dashboardPage = new DashboardPage();
+
         dashboardPage.navigateToModule("Activities", "Calendar Events");
 
         //Verify that page subtitle "Options" is displayed
@@ -55,11 +60,11 @@ public class HW_05_21 extends TestBase {
         //Go to “https://qa1.vytrack.com/"  (TestBase handles this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
-        new LoginPage().login(ConfigurationReader.get("storemanager_username"), ConfigurationReader.get("storemanager_password"));
+        login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
-        new DashboardPage().navigateToModule("Activities", "Calendar Events");
+        dashboardPage.navigateToModule("Activities", "Calendar Events");
         new CalendarEventsPage().waitUntilLoaderScreenDisappear();
         //Thread.sleep(3000);
 
@@ -86,13 +91,13 @@ public class HW_05_21 extends TestBase {
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
-        new LoginPage().loginAs("storemanager");
+        login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events test");
-        DashboardPage dashboardPage = new DashboardPage();
+
         dashboardPage.navigateToModule("Activities", "Calendar Events");
-        BrowserUtils.waitForPageToLoad(5);
+        dashboardPage.waitUntilLoaderScreenDisappear();
 
         //Verify that view per page number is equals to "25"
         extentLogger = report.createTest("Verify that view per page number is equals to \"25\" test");
@@ -117,11 +122,11 @@ public class HW_05_21 extends TestBase {
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
-        new LoginPage().loginAs("storemanager");
+        login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
-        new DashboardPage().navigateToModule("Activities", "Calendar Events");
+        dashboardPage.navigateToModule("Activities", "Calendar Events");
 
 
         //Verify that number of calendar events (rows in the table) is equals to number of records
@@ -170,16 +175,16 @@ public class HW_05_21 extends TestBase {
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
-        new LoginPage().loginAs("storemanager");
+        login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
-        new DashboardPage().navigateToModule("Activities", "Calendar Events");
+        dashboardPage.navigateToModule("Activities", "Calendar Events");
 
         //Click on the top checkbox to select all
         extentLogger = report.createTest("Click on the top checkbox to select all test");
         BrowserUtils.waitForPageToLoad(5);
-        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         calendarEventsPage.checkBoxAll.click();
         BrowserUtils.waitFor(1);
 
@@ -191,7 +196,7 @@ public class HW_05_21 extends TestBase {
 
         for (int i = 1; i <= pageNoAsInt; i++) {
             rowNo += calendarEventsPage.tableRows.size();
-            //page 25 ten sonra çakıyor...
+
             for (int k = 0; k < calendarEventsPage.tableRows.size(); k++) {
 
                 //System.out.println("row is selected = " + calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"));
@@ -249,15 +254,15 @@ public class HW_05_21 extends TestBase {
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger.info("Login as a store manager test");
-        new LoginPage().loginAs("storemanager");
+        login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger.info("Navigate to “Activities -> Calendar Events” test");
-        new DashboardPage().navigateToModule("Activities", "Calendar Events");
+        dashboardPage.navigateToModule("Activities", "Calendar Events");
 
         //check all rows for Testers meeting with the Start date of Nov 27, 2019, 9:30 AM and end date of Nov 27, 2019, 10:30 AM
         extentLogger.info("check all rows for Test Event test");
-        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         BrowserUtils.waitForClickablility(calendarEventsPage.rightArrow, 10);
 
         String pageNoAsString = calendarEventsPage.totalPagesNo.getText();
@@ -274,9 +279,7 @@ public class HW_05_21 extends TestBase {
 
             for (int i = 0; i < pageNoAsInt; i++) {
 
-
                 //rowNo = rowNo + calendarEventsPage.tableRows.size();
-
 
                 for (int k = 0; k < calendarEventsPage.tableRows.size(); k++) {
 
