@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Vytrack Smoke Suite" verbose="1">
+    <test name="Vytrack Smoke Test QA1">
+        <parameter name="env" value="qa1"></parameter>
+        <classes>
+            <class name="com.cybertek.tests.day17_extent_reports.NegativeLoginTestWithReport"></class>
+        </classes>
+    </test>
+    <test name="Vytrack Smoke Test QA2">
+        <parameter name="env" value="qa2"></parameter>
+        <classes>
+            <class name="com.cybertek.tests.day17_extent_reports.NegativeLoginTestWithReport"></class>
+        </classes>
+    </test>
+    <test name="Vytrack Smoke Test QA3">
+        <parameter name="env" value="qa3"></parameter>
+        <classes>
+            <class name="com.cybertek.tests.day17_extent_reports.NegativeLoginTestWithReport"></class>
+        </classes>
+    </test>
+</suite>
