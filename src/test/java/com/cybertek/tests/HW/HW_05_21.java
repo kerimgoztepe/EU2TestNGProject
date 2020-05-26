@@ -122,8 +122,8 @@ public class HW_05_21 extends TestBase {
      * 4. Verify that number of calendar events (rows in the table) is equals to number of records (1559)
      */
 
-    @Test
-    public void t4numberOfRecordsTest() {
+    @Test (priority = 4, description = "TestCase # 4")
+    public void numberOfRecordsTest() {
         extentLogger = report.createTest("Verify that number of calendar events (rows in the table) is equals to number of records test");
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
@@ -177,8 +177,8 @@ public class HW_05_21 extends TestBase {
      * 5. Verify that all calendar events were selected
      */
 
-    @Test
-    public void t5calendarEventsSelectedTest() {
+    @Test (priority = 5, description = "TestCase # 5")
+    public void calendarEventsSelectedTest() {
         extentLogger = report.createTest("Verify that all calendar events were selected test");
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
@@ -259,8 +259,8 @@ public class HW_05_21 extends TestBase {
      * Call Via Hangout     No
      */
 
-    @Test
-    public void t6testersMeetingTest() {
+    @Test (priority = 6, description = "TestCase # 6")
+    public void testersMeetingTest() {
         DashboardPage dashboardPage = new DashboardPage();
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
 
