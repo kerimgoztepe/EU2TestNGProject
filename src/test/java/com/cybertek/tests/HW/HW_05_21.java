@@ -11,9 +11,9 @@ import org.testng.annotations.Test;
 
 public class HW_05_21 extends TestBase {
 
-    LoginPage login = new LoginPage();
+    /*LoginPage login = new LoginPage();
     DashboardPage dashboardPage = new DashboardPage();
-    CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+    CalendarEventsPage calendarEventsPage = new CalendarEventsPage();*/
 
     /***
      * Test case #1
@@ -24,19 +24,19 @@ public class HW_05_21 extends TestBase {
      */
 
     @Test
-    public void optionIsDisplayedTest() {
+    public void t1optionIsDisplayedTest() {
         extentLogger = report.createTest("Verify page subtitle Option is displayed test");
 
         //Go to “https://qa1.vytrack.com/"  (TestBase handles this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
-
+        LoginPage login = new LoginPage();
         login.loginAs("storemanager");
                 //login(ConfigurationReader.get("storemanager_username"), ConfigurationReader.get("storemanager_password"));
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
-
+        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
 
         //Verify that page subtitle "Options" is displayed
@@ -54,16 +54,18 @@ public class HW_05_21 extends TestBase {
      * 4. Verify that page number is equals to "1"
      */
     @Test
-    public void pageNumberTest() {
+    public void t2pageNumberTest() {
         extentLogger = report.createTest("Verify page subtitle Option is displayed test");
 
         //Go to “https://qa1.vytrack.com/"  (TestBase handles this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
+        LoginPage login = new LoginPage();
         login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
+        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
         new CalendarEventsPage().waitUntilLoaderScreenDisappear();
         //Thread.sleep(3000);
@@ -85,23 +87,27 @@ public class HW_05_21 extends TestBase {
      * 4. Verify that view per page number is equals to "25"
      */
     @Test
-    public void viewPerPageTest() {
+    public void t3viewPerPageTest() {
         extentLogger = report.createTest("Verify that view per page number is equals to \"25\" test");
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
+        LoginPage login = new LoginPage();
         login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events test");
-
+        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
         dashboardPage.waitUntilLoaderScreenDisappear();
 
         //Verify that view per page number is equals to "25"
         extentLogger = report.createTest("Verify that view per page number is equals to \"25\" test");
-        Assert.assertEquals(new CalendarEventsPage().viewPerPageNo.getText(), "25", "Verify that view per page number is equals to \"25\"");
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        String perPage = calendarEventsPage.viewPerPageNo.getText();
+        //System.out.println("perPage = " + perPage);
+        Assert.assertEquals(perPage, "25", "Verify that view per page number is equals to \"25\"");
 
         extentLogger.pass("PASS : Verify that view per page number is equals to \"25\" test");
 
@@ -116,16 +122,18 @@ public class HW_05_21 extends TestBase {
      */
 
     @Test
-    public void numberOfRecordsTest() {
+    public void t4numberOfRecordsTest() {
         extentLogger = report.createTest("Verify that number of calendar events (rows in the table) is equals to number of records test");
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
+        LoginPage login = new LoginPage();
         login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
+        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
 
 
@@ -169,22 +177,25 @@ public class HW_05_21 extends TestBase {
      */
 
     @Test
-    public void calendarEventsSelectedTest() {
+    public void t5calendarEventsSelectedTest() {
         extentLogger = report.createTest("Verify that all calendar events were selected test");
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
+        LoginPage login = new LoginPage();
         login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
+        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
 
         //Click on the top checkbox to select all
         extentLogger = report.createTest("Click on the top checkbox to select all test");
         BrowserUtils.waitForPageToLoad(5);
 
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         calendarEventsPage.checkBoxAll.click();
         BrowserUtils.waitFor(1);
 
@@ -248,12 +259,16 @@ public class HW_05_21 extends TestBase {
      */
 
     @Test
-    public void testersMeetingTest() {
+    public void t6testersMeetingTest() {
+        DashboardPage dashboardPage = new DashboardPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         extentLogger = report.createTest("Verify that predefined Testers Meeting is displayed test");
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger.info("Login as a store manager test");
+        LoginPage login = new LoginPage();
         login.loginAs("storemanager");
 
         //Navigate to “Activities -> Calendar Events”
