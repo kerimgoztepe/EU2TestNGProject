@@ -23,8 +23,8 @@ public class HW_05_21 extends TestBase {
      * 4. Verify that page subtitle "Options" is displayed
      */
 
-    @Test
-    public void t1optionIsDisplayedTest() {
+    @Test (priority = 1, description = "TestCase # 1")
+    public void optionIsDisplayedTest() {
         extentLogger = report.createTest("Verify page subtitle Option is displayed test");
 
         //Go to “https://qa1.vytrack.com/"  (TestBase handles this)
@@ -53,8 +53,8 @@ public class HW_05_21 extends TestBase {
      * 3. Navigate to “Activities -> Calendar Events”
      * 4. Verify that page number is equals to "1"
      */
-    @Test
-    public void t2pageNumberTest() {
+    @Test (priority = 2, description = "TestCase # 2")
+    public void pageNumberTest() {
         extentLogger = report.createTest("Verify page subtitle Option is displayed test");
 
         //Go to “https://qa1.vytrack.com/"  (TestBase handles this)
@@ -86,8 +86,8 @@ public class HW_05_21 extends TestBase {
      * 3. Navigate to “Activities -> Calendar Events”
      * 4. Verify that view per page number is equals to "25"
      */
-    @Test
-    public void t3viewPerPageTest() {
+    @Test (priority = 3, description = "TestCase # 3")
+    public void viewPerPageTest() {
         extentLogger = report.createTest("Verify that view per page number is equals to \"25\" test");
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
@@ -100,7 +100,8 @@ public class HW_05_21 extends TestBase {
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events test");
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
-        dashboardPage.waitUntilLoaderScreenDisappear();
+        //dashboardPage.waitUntilLoaderScreenDisappear();
+        BrowserUtils.waitForPageToLoad(10);
 
         //Verify that view per page number is equals to "25"
         extentLogger = report.createTest("Verify that view per page number is equals to \"25\" test");
