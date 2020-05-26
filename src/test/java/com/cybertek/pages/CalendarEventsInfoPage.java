@@ -34,5 +34,8 @@ public class CalendarEventsInfoPage extends BasePage {
     @FindBy(xpath = "(//div[@class='control-group attribute-row'])[9]/div/div")
     public WebElement callViaHangoutInfo;
 
+    @FindBy(xpath = "(//div[@class='control-group attribute-row']/div/div)")
+    public List<WebElement> eventInfoDetails;
+
 
 }

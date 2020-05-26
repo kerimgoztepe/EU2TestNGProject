@@ -5,6 +5,7 @@ import com.cybertek.tests.TestBase;
 import com.cybertek.utilities.BrowserUtils;
 import com.cybertek.utilities.ConfigurationReader;
 
+import com.google.common.base.Verify;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -255,7 +256,7 @@ public class HW_05_21 extends TestBase {
         new DashboardPage().navigateToModule("Activities", "Calendar Events");
 
         //check all rows for Testers meeting with the Start date of Nov 27, 2019, 9:30 AM and end date of Nov 27, 2019, 10:30 AM
-        extentLogger.info("check all rows for Test event test");
+        extentLogger.info("check all rows for Test Event test");
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         BrowserUtils.waitForClickablility(calendarEventsPage.rightArrow, 10);
 
@@ -263,7 +264,7 @@ public class HW_05_21 extends TestBase {
         pageNoAsString = pageNoAsString.substring(3, pageNoAsString.length() - 2);
         int pageNoAsInt = Integer.parseInt(pageNoAsString);
         //int rowNo = 0;
-        String expectedEventInfo = "Test event Stephan Haley Apr 4, 2020, 9:23 AM Apr 4, 2020, 10:23 AM No N/A Not responded";
+        String expectedEventInfo = "Test Event Stephan Haley Apr 4, 2020, 10:29 AM Apr 4, 2020, 11:29 AM No N/A Not responded";
 
         //boolean b = false;
 
@@ -294,10 +295,24 @@ public class HW_05_21 extends TestBase {
 
         CalendarEventsInfoPage calendarEventsInfoPage = new CalendarEventsInfoPage();
 
+        for (int i=0; i<calendarEventsInfoPage.eventInfoDetails.size(); i++){
+            extentLogger.info("Verify Calendar event info detail: " + calendarEventsInfoPage.eventInfoDetails.get(i).getText()+ " is displayed successfully test");
+            System.out.println("calendarEventsInfoPage.eventInfoDetails.get(i).getText() = " + calendarEventsInfoPage.eventInfoDetails.get(i).getText());
+            Assert.assertTrue(calendarEventsInfoPage.eventInfoDetails.get(i).isDisplayed(),"verify event details info is displayed");
+        }
+
+        extentLogger.pass("PASS : Verify that predefined Test Event is displayed test");
+
+
+
+
+
+      /*
+
         //System.out.println("calendarEventsInfoPage.eventInfoDetails.getText() = " + calendarEventsInfoPage.eventInfoDetails.getText());
         //System.out.println("calendarEventsInfoPage.eventInfoDetails.isDisplayed() = " + calendarEventsInfoPage.eventInfoDetails.isDisplayed());
 
-        /*String expectedTitle = "Title Test event";
+        String expectedTitle = "Title Test event";
         String actualTitle = calendarEventsInfoPage.titleInfo.getText();
 
         extentLogger.info("Verify title is " + expectedTitle);
@@ -350,8 +365,8 @@ public class HW_05_21 extends TestBase {
 
         extentLogger.info("Verify Call via Hangout is " + expectedCallViaHangout);
         Assert.assertEquals(actualCallViaHangout, expectedCallViaHangout, "Verify Call via Hangout is " + expectedCallViaHangout);
-*/
-        System.out.println("calendarEventsInfoPage.titleInfo.getText() = " + calendarEventsInfoPage.titleInfo.getText());
+
+
 
         //Verify Calendar event Title is displayed successfully
         extentLogger.info("Verify Calendar event Title is displayed successfully test");
@@ -377,13 +392,14 @@ public class HW_05_21 extends TestBase {
         extentLogger.info("Verify Calendar event Organizer is displayed successfully test");
         Assert.assertTrue(calendarEventsInfoPage.organizerInfo.isDisplayed(),"Calendar event Organizer is displayed successfully");
 
-        /*//Verify Calendar event Call Via Hangout is displayed successfully
+
+        Verify Calendar event Call Via Hangout is displayed successfully
         extentLogger.info("Verify Calendar event Call Via Hangout is displayed successfully test");
         Assert.assertTrue(calendarEventsInfoPage.callViaHangoutInfo.isDisplayed(),"Calendar event Call Via Hangout is displayed successfully");
 */
 
 
-        extentLogger.pass("PASS : Verify that predefined Testers Meeting is displayed test");
+
 
     }
 }
