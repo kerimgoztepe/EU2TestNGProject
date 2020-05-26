@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Vytrack Regression Suite" verbose="1">
+    <test name="Vytrack Regression Test">
+        <packages>
+            <package name="com.cybertek.tests.day17_extent_reports"></package>
+            <package name="com.cybertek.tests.day14_properties_driver_tests"></package>
+        </packages>
+        <classes>
+            <class name="com.cybertek.tests.day16_pom.NegativeLoginTest"></class>
+            <class name="com.cybertek.tests.day18_review.verifyContactInfoTest"></class>
+        </classes>
+    </test>
+</suite>

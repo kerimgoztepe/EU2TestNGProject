@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Vytrack Automation" verbose="1">
+    <test name="Vytrack Smoke Test">
+        <classes>
+            <class name="com.cybertek.tests.day16_pom.NegativeLoginTest">
+                <methods>
+                    <include name="wrongUsernameTest"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
