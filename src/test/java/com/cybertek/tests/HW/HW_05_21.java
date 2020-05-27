@@ -154,6 +154,16 @@ public class HW_05_21 extends TestBase {
             calendarEventsPage.waitUntilLoaderScreenDisappear();
         }
 
+        /***
+         * @FindBy(xpath = "//button[contains(@class,'btn dropdown-toggle')]")
+         * public WebElement  perPage1;
+         * @FindBy(xpath = "//a[contains(text(),'100')]")
+         * public  WebElement perPage2;
+         *
+         * calendarEventsPage.perPage1.click();
+         * calendarEventsPage.perPage2.click();
+         */
+
         //System.out.println("calendarEventsPage.totalRecordNo.getText() = " + calendarEventsPage.totalRecordNo.getText().substring(9,13));
         int totalRecordNoAsInt = Integer.parseInt(calendarEventsPage.totalRecordNo.getText().substring(9, calendarEventsPage.totalRecordNo.getText().length() - 8));
         System.out.println("totalRecordNoAsInt = " + totalRecordNoAsInt);
