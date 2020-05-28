@@ -11,10 +11,6 @@ import org.testng.annotations.Test;
 
 public class HW_05_21 extends TestBase {
 
-    /*LoginPage login = new LoginPage();
-    DashboardPage dashboardPage = new DashboardPage();
-    CalendarEventsPage calendarEventsPage = new CalendarEventsPage();*/
-
     /***
      * Test case #1
      * 1. Go to “https://qa1.vytrack.com/"
@@ -27,6 +23,9 @@ public class HW_05_21 extends TestBase {
     public void optionIsDisplayedTest() {
         extentLogger = report.createTest("Verify page subtitle Option is displayed test");
 
+        DashboardPage dashboardPage = new DashboardPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         //Go to “https://qa1.vytrack.com/"  (TestBase handles this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
@@ -36,12 +35,11 @@ public class HW_05_21 extends TestBase {
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
-        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
 
         //Verify that page subtitle "Options" is displayed
         extentLogger = report.createTest("Verify that page subtitle \"Options\" is displayed test");
-        Assert.assertTrue(new CalendarEventsPage().optionsButton.isDisplayed(), "Verify that page subtitle \"Options\" is displayed");
+        Assert.assertTrue(calendarEventsPage.optionsButton.isDisplayed(), "Verify that page subtitle \"Options\" is displayed");
 
         extentLogger.pass("PASS : Verify that page subtitle \"Options\" is displayed");
     }
@@ -57,6 +55,9 @@ public class HW_05_21 extends TestBase {
     public void pageNumberTest() {
         extentLogger = report.createTest("Verify page subtitle Option is displayed test");
 
+        DashboardPage dashboardPage = new DashboardPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         //Go to “https://qa1.vytrack.com/"  (TestBase handles this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
@@ -65,14 +66,13 @@ public class HW_05_21 extends TestBase {
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
-        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
-        new CalendarEventsPage().waitUntilLoaderScreenDisappear();
-        //Thread.sleep(3000);
+        calendarEventsPage.waitUntilLoaderScreenDisappear();
 
         //Verify that page number is equals to "1"
         extentLogger = report.createTest("Verify that page number is equals to \"1\" test");
         String pageNumberText = new CalendarEventsPage().pageNumber.getAttribute("value");
+
         Assert.assertEquals(pageNumberText, "1", "Verify that page number is equals to \"1\"");
 
         extentLogger.pass("PASS : Verify that page number is equals to \"1\"");
@@ -86,9 +86,13 @@ public class HW_05_21 extends TestBase {
      * 3. Navigate to “Activities -> Calendar Events”
      * 4. Verify that view per page number is equals to "25"
      */
+
     @Test (priority = 3, description = "TestCase # 3")
     public void viewPerPageTest() {
         extentLogger = report.createTest("Verify that view per page number is equals to \"25\" test");
+
+        DashboardPage dashboardPage = new DashboardPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
@@ -98,16 +102,15 @@ public class HW_05_21 extends TestBase {
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events test");
-        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
         //dashboardPage.waitUntilLoaderScreenDisappear();
         BrowserUtils.waitForPageToLoad(10);
 
         //Verify that view per page number is equals to "25"
         extentLogger = report.createTest("Verify that view per page number is equals to \"25\" test");
-        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         String perPage = calendarEventsPage.viewPerPageNo.getText();
         //System.out.println("perPage = " + perPage);
+
         Assert.assertEquals(perPage, "25", "Verify that view per page number is equals to \"25\"");
 
         extentLogger.pass("PASS : Verify that view per page number is equals to \"25\" test");
@@ -126,6 +129,9 @@ public class HW_05_21 extends TestBase {
     public void numberOfRecordsTest() {
         extentLogger = report.createTest("Verify that number of calendar events (rows in the table) is equals to number of records test");
 
+        DashboardPage dashboardPage = new DashboardPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
@@ -134,14 +140,17 @@ public class HW_05_21 extends TestBase {
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
-        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
+        BrowserUtils.waitForClickablility(calendarEventsPage.perPageBtn, 10);
 
+        //change view per page to 100
+        calendarEventsPage.perPageBtn.click();
+        calendarEventsPage.perPage100.click();
 
         //Verify that number of calendar events (rows in the table) is equals to number of records
         extentLogger = report.createTest("Verification of number of calendar events (rows in the table) is equals to number of records test");
-        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         BrowserUtils.waitForClickablility(calendarEventsPage.rightArrow, 10);
+
         //new DashboardPage().waitUntilLoaderScreenDisappear();
         //System.out.println("calendarEventsPage.totalPagesNo.getText() = " + calendarEventsPage.totalPagesNo.getText());
         String pageNoAsString = calendarEventsPage.totalPagesNo.getText();
@@ -149,20 +158,10 @@ public class HW_05_21 extends TestBase {
         int pageNoAsInt = Integer.parseInt(pageNoAsString);
         int rowNo = 0;
         for (int i = 1; i <= pageNoAsInt; i++) {
-            rowNo = rowNo + calendarEventsPage.tableRows.size();
+            rowNo += calendarEventsPage.tableRows.size();
             calendarEventsPage.rightArrow.click();
             calendarEventsPage.waitUntilLoaderScreenDisappear();
         }
-
-        /***
-         * @FindBy(xpath = "//button[contains(@class,'btn dropdown-toggle')]")
-         * public WebElement  perPage1;
-         * @FindBy(xpath = "//a[contains(text(),'100')]")
-         * public  WebElement perPage2;
-         *
-         * calendarEventsPage.perPage1.click();
-         * calendarEventsPage.perPage2.click();
-         */
 
         //System.out.println("calendarEventsPage.totalRecordNo.getText() = " + calendarEventsPage.totalRecordNo.getText().substring(9,13));
         int totalRecordNoAsInt = Integer.parseInt(calendarEventsPage.totalRecordNo.getText().substring(9, calendarEventsPage.totalRecordNo.getText().length() - 8));
@@ -173,7 +172,7 @@ public class HW_05_21 extends TestBase {
 
         Assert.assertEquals(rowNo, totalRecordNoAsInt, "verify number of calendar events (rows in the table) is equals to number of total records");
 
-        extentLogger.pass("PASS : Verify that number of calendar events (rows in the table) is equals to number of records (25) test");
+        extentLogger.pass("PASS : Verify that number of calendar events (rows in the table) is equals to number of records test");
 
 
     }
@@ -191,6 +190,9 @@ public class HW_05_21 extends TestBase {
     public void calendarEventsSelectedTest() {
         extentLogger = report.createTest("Verify that all calendar events were selected test");
 
+        DashboardPage dashboardPage = new DashboardPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
         extentLogger = report.createTest("Login as a store manager test");
@@ -199,14 +201,17 @@ public class HW_05_21 extends TestBase {
 
         //Navigate to “Activities -> Calendar Events”
         extentLogger = report.createTest("Navigate to “Activities -> Calendar Events” test");
-        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
+        BrowserUtils.waitForClickablility(calendarEventsPage.perPageBtn, 10);
+
+        //change view per page to 100
+        calendarEventsPage.perPageBtn.click();
+        calendarEventsPage.perPage100.click();
 
         //Click on the top checkbox to select all
         extentLogger = report.createTest("Click on the top checkbox to select all test");
         BrowserUtils.waitForPageToLoad(5);
 
-        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         calendarEventsPage.checkBoxAll.click();
         BrowserUtils.waitFor(1);
 
@@ -220,7 +225,6 @@ public class HW_05_21 extends TestBase {
             rowNo += calendarEventsPage.tableRows.size();
 
             for (int k = 0; k < calendarEventsPage.tableRows.size(); k++) {
-
                 //System.out.println("row is selected = " + calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"));
 
                 Assert.assertTrue(calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"), "verify row is selected");
@@ -255,26 +259,24 @@ public class HW_05_21 extends TestBase {
      * 1. Go to “https://qa1.vytrack.com/"
      * 2. Login as a store manager
      * 3. Navigate to “Activities -> Calendar Events”
-     * 4. Select “Testers meeting”
+     * 4. Select “titleValue”
      * 5. Verify that following data is displayed:
      *
-     * Title                Testers meeting
-     * Description          This is a a weekly testers meeting
-     * Start                Nov 27, 2019, 9:30 AM
-     * End                  Nov 27, 2019, 10:30 AM
+     * Title                titleValue
+     * Description          Scrum meeting to provide updates
+     * Start                Apr 4, 2020, 10:33 AM
+     * End                  Apr 4, 2020, 11:33 AM
      * All-Day Event        No
      * Organizer            Stephan Haley
-     * Guests               Tom Smith
-     * Recurrence           Weekly every 1 week on Wednesday
      * Call Via Hangout     No
      */
 
     @Test (priority = 6, description = "TestCase # 6")
     public void testersMeetingTest() {
+        extentLogger = report.createTest("Verify that predefined titleValue is displayed test");
+
         DashboardPage dashboardPage = new DashboardPage();
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
-
-        extentLogger = report.createTest("Verify that predefined Testers Meeting is displayed test");
 
         //Go to “https://qa1.vytrack.com/" (TestBase does this)
         //Login as a store manager
@@ -285,24 +287,25 @@ public class HW_05_21 extends TestBase {
         //Navigate to “Activities -> Calendar Events”
         extentLogger.info("Navigate to “Activities -> Calendar Events” test");
         dashboardPage.navigateToModule("Activities", "Calendar Events");
+        BrowserUtils.waitForClickablility(calendarEventsPage.perPageBtn, 10);
 
-        //check all rows for Testers meeting with the Start date of Nov 27, 2019, 9:30 AM and end date of Nov 27, 2019, 10:30 AM
-        extentLogger.info("check all rows for Test Event test");
+        //change view per page to 100
+        calendarEventsPage.perPageBtn.click();
+        calendarEventsPage.perPage100.click();
+
+        //check all rows for Daily stand-up
+        extentLogger.info("check all rows for titleValue test");
 
         BrowserUtils.waitForClickablility(calendarEventsPage.rightArrow, 10);
 
         String pageNoAsString = calendarEventsPage.totalPagesNo.getText();
         pageNoAsString = pageNoAsString.substring(3, pageNoAsString.length() - 2);
         int pageNoAsInt = Integer.parseInt(pageNoAsString);
-        //int rowNo = 0;
-        String expectedEventInfo = "Test Event Stephan Haley Apr 4, 2020, 10:29 AM Apr 4, 2020, 11:29 AM No N/A Not responded";
 
-        //boolean b = false;
+        String expectedEventInfo = "titleValue";
+
 
         label:
-
-        //while (b=false) {
-
             for (int i = 0; i < pageNoAsInt; i++) {
 
                 //rowNo = rowNo + calendarEventsPage.tableRows.size();
@@ -310,10 +313,17 @@ public class HW_05_21 extends TestBase {
                 for (int k = 0; k < calendarEventsPage.tableRows.size(); k++) {
 
                     if (calendarEventsPage.tableRows.get(k).getText().contains(expectedEventInfo)) {
-                        System.out.println("tableRows.get(k).getText() = " + calendarEventsPage.tableRows.get(k).getText());
+                        //System.out.println("tableRows.get(k).getText() = " + calendarEventsPage.tableRows.get(k).getText());
                         calendarEventsPage.tableRows.get(k).click();
                         calendarEventsPage.waitUntilLoaderScreenDisappear();
-                        //b = true;
+
+                        CalendarEventsInfoPage calendarEventsInfoPage = new CalendarEventsInfoPage();
+
+                        for (int x=0; x<calendarEventsInfoPage.eventInfoDetails.size(); x++){
+                            extentLogger.info("Verify Calendar event info detail: " + calendarEventsInfoPage.eventInfoDetails.get(x).getText()+ " is displayed successfully test");
+                            System.out.println("calendarEventsInfoPage.eventInfoDetails.get(x).getText() = " + calendarEventsInfoPage.eventInfoDetails.get(x).getText());
+                            Assert.assertTrue(calendarEventsInfoPage.eventInfoDetails.get(x).isDisplayed(),"verify event details info is displayed");
+                        }
                         break label;
                     }
                 }
@@ -321,16 +331,15 @@ public class HW_05_21 extends TestBase {
                 calendarEventsPage.waitUntilLoaderScreenDisappear();
             }
 
+        extentLogger.pass("PASS : Verify that predefined Test Event is displayed test");
 
-        CalendarEventsInfoPage calendarEventsInfoPage = new CalendarEventsInfoPage();
+        //CalendarEventsInfoPage calendarEventsInfoPage = new CalendarEventsInfoPage();
 
-        for (int i=0; i<calendarEventsInfoPage.eventInfoDetails.size(); i++){
+        /*for (int i=0; i<calendarEventsInfoPage.eventInfoDetails.size(); i++){
             extentLogger.info("Verify Calendar event info detail: " + calendarEventsInfoPage.eventInfoDetails.get(i).getText()+ " is displayed successfully test");
             System.out.println("calendarEventsInfoPage.eventInfoDetails.get(i).getText() = " + calendarEventsInfoPage.eventInfoDetails.get(i).getText());
             Assert.assertTrue(calendarEventsInfoPage.eventInfoDetails.get(i).isDisplayed(),"verify event details info is displayed");
-        }
-
-        extentLogger.pass("PASS : Verify that predefined Test Event is displayed test");
+        }*/
 
 
 
