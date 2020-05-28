@@ -215,6 +215,8 @@ public class HW_05_21 extends TestBase {
         calendarEventsPage.checkBoxAll.click();
         BrowserUtils.waitFor(1);
 
+        //Verify that all calendar events were selected
+        extentLogger = report.createTest("Verify that all calendar events were selected test");
         String pageNoAsString = calendarEventsPage.totalPagesNo.getText();
         pageNoAsString = pageNoAsString.substring(3, pageNoAsString.length() - 2);
         int pageNoAsInt = Integer.parseInt(pageNoAsString);
@@ -227,7 +229,7 @@ public class HW_05_21 extends TestBase {
             for (int k = 0; k < calendarEventsPage.tableRows.size(); k++) {
                 //System.out.println("row is selected = " + calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"));
 
-                Assert.assertTrue(calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"), "verify page no:"+i+" and "+calendarEventsPage.tableRows.get(k).getText()+ " is NOT selected");
+                Assert.assertTrue(calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"), "verify page no:"+i+" and "+calendarEventsPage.tableRows.get(k).getText()+ " is selected");
 
                 /*if (!calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected")) {
                     System.out.println("page no:" + pageNoAsInt + " and row no:" + calendarEventsPage.tableRows.get(calendarEventsPage.tableRows.size()) + " is NOT selected");                    //calendarEventsPage.rightArrow.click();
