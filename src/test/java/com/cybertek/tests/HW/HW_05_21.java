@@ -224,12 +224,12 @@ public class HW_05_21 extends TestBase {
         int rowNo = 0;
 
         for (int i = 1; i <= pageNoAsInt; i++) {
-            rowNo += calendarEventsPage.tableRows.size();
 
             for (int k = 0; k < calendarEventsPage.tableRows.size(); k++) {
                 //System.out.println("row is selected = " + calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"));
 
-                Assert.assertTrue(calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"), "verify page no:"+i+" and "+calendarEventsPage.tableRows.get(k).getText()+ " is selected");
+                rowNo++;
+                Assert.assertTrue(calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected"), "verify page no:"+i+" and row no: "+rowNo+" : "+calendarEventsPage.tableRows.get(k).getText()+ " is selected");
 
                 /*if (!calendarEventsPage.tableRows.get(k).getAttribute("class").contains("row-selected")) {
                     System.out.println("page no:" + pageNoAsInt + " and row no:" + calendarEventsPage.tableRows.get(calendarEventsPage.tableRows.size()) + " is NOT selected");                    //calendarEventsPage.rightArrow.click();
