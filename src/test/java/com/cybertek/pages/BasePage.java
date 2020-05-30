@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sun.jvm.hotspot.debugger.Page;
 
 public abstract class BasePage {
     /***
@@ -39,9 +40,16 @@ public abstract class BasePage {
     public BasePage() {
         PageFactory.initElements(Driver.get(), this);
     }
-        //PageFactory is a class which  has a static initElements method that initialize all WebElements
-        //use findby here and driver connection...
+    /***
+     * PageFactory is a class which  has a static initElements method that initialize all WebElements
+     * PageFactory is used to initialize the elements of the Page Object or instantiate the Page Objects itself
+     * use @Findby here and driver connection...Not ‘FindElement’ or ‘FindElements’
+     */
 
+    /**
+     * The initElements() method takes the driver object created in the test and
+     * initializes the elements declared in the LoginPage class...
+     */
     /**
      * @return page name, for example: Dashboard
      */
