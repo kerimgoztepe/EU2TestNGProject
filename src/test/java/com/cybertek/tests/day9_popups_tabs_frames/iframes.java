@@ -37,7 +37,7 @@ public class iframes {
         driver.findElement(By.id("tinymce")).sendKeys("Mike Smith");
 
         //goes back to first frame(main html)
-        //goes back to first frame, useful when we have switched multipe frames
+        //goes back to first frame, useful when we have switched multiple frames
         driver.switchTo().defaultContent();
         Thread.sleep(1000);
 

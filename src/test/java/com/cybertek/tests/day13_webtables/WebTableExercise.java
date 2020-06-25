@@ -50,14 +50,12 @@ public class WebTableExercise {
     }
 
     private int getNoOfCols() {
-        //locate all columns
-        return 0;
+        List<WebElement> headers = driver.findElements(By.xpath("//table[@id='table1']//th"));
+        return headers.size();
     }
 
     private int getNoOfRows() {
-        //locate all rows as webelement assign to List elements
-        List<WebElement> noOfRows = driver.findElements(By.xpath("//table[@id='table2']//th"));
-        //return no of rows as int number
-        return noOfRows.size();
+        List<WebElement> allRows = driver.findElements(By.xpath("//table[@id='table1']/tbody/tr"));
+        return allRows.size();
     }
 }

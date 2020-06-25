@@ -46,6 +46,7 @@ public class TestBase {
         //set environment information
         report.setSystemInfo("Environment","QA");
         report.setSystemInfo("Browser",ConfigurationReader.get("browser"));
+        report.setSystemInfo("Tester",ConfigurationReader.get("tester"));
         report.setSystemInfo("OS",System.getProperty("os.name"));
 
     }
