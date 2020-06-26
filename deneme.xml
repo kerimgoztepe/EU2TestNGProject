@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Parallel Cross-Browser Deneme" parallel="methods" thread-count="4">
+    <test name="Parallel Test1">
+        <parameter name="browser" value="chrome"></parameter>
+        <packages>
+            <package name="com.cybertek.tests.day17_extent_reports"></package>
+            <package name="com.cybertek.tests.day14_properties_driver_tests"></package>
+        </packages>
+        <classes>
+            <class name="com.cybertek.tests.day16_pom.NegativeLoginTest"></class>
+            <class name="com.cybertek.tests.day17_extent_reports.NegativeLoginTestWithReport"></class>
+        </classes>
+    </test>
+    <test name="Parallel Test2">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="com.cybertek.tests.day16_pom.NegativeLoginTest"></class>
+            <class name="com.cybertek.tests.day17_extent_reports.NegativeLoginTestWithReport"></class>
+        </classes>
+    </test>
+</suite>
