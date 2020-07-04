@@ -19,5 +19,6 @@ public class OpenBrowser {
 
         driver.get("https://www.amazon.com");
 
+
     }
 }
