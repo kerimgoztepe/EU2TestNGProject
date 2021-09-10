@@ -114,7 +114,7 @@ public class HW_05_21 extends TestBase {
         //Verify that view per page number is equals to "25"
         extentLogger = report.createTest("Verify that view per page number is equals to \"25\" test");
         String perPage = calendarEventsPage.viewPerPageNo.getText();
-        //System.out.println("perPage = " + perPage);
+        System.out.println("perPage = " + perPage);
 
         Assert.assertEquals(perPage, "25", "Verify that view per page number is equals to \"25\"");
 

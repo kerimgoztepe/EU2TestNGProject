@@ -1,6 +1,7 @@
 package com.cybertek.tests.day2_webdriver_basics;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -28,5 +29,13 @@ public class NavigationDemo {
         Thread.sleep(3000);
 
         driver.navigate().refresh();        // refresh the website
+
+        driver.findElement(By.id("email")).sendKeys("someEmail@email.com");
+        Thread.sleep(2000);
+
+        driver.findElement(By.id("pass")).sendKeys("any password");
+        Thread.sleep(2000);
+
+        driver.quit();
     }
 }
