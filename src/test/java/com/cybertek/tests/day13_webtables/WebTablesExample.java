@@ -148,6 +148,19 @@ public class WebTablesExample {
         List<WebElement> allRows = driver.findElements(By.xpath("//table[@id='table1']/tbody/tr"));
         return allRows.size();
     }
+    @Test
+    public void getCellInRelationToAnotherCellInSameRow () {
+        List<WebElement> eachCellRow = driver.findElements(By.xpath("//table[@id = 'table1']/tbody/tr"));
+        for (int i = 1; i <= eachCellRow.size(); i++) {
+            if (driver.findElement(By.xpath("//table[@id = 'table1']/tbody/tr[" + i + "]/td[1]")).getText().equals("Bach")) {
+                //System.out.println(driver.findElement(By.xpath("//table[@id = 'table1']/tbody/tr[" + i + "]/td[1]")).getText());
+                System.out.println("Bach'in Maasi = " + driver.findElement(By.xpath("//table[@id = 'table1']/tbody/tr[" + i + "]/td[4]")).getText());
+                break;
+
+            }
+        }
+
+    }
 
 
 }

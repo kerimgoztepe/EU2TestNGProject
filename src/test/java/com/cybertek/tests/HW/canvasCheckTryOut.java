@@ -1,7 +1,7 @@
 package com.cybertek.tests.HW;
 
 import com.cybertek.utilities.WebDriverFactory;
-import com.github.javafaker.File;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -12,13 +12,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class canvasCheckTryOut {
 
-}
-/*
+
     @Test
     public void Canvas() throws InterruptedException, IOException {
 
@@ -26,7 +26,7 @@ public class canvasCheckTryOut {
         Workbook workbook = WorkbookFactory.create(new File(path));
         Sheet lessonList = workbook.getSheet("Sheet1");
         int lastRow1 = lessonList.getLastRowNum();
-        Sheet studentList = workbook.getSheet("EU5");
+        Sheet studentList = workbook.getSheet("EU7");
         int lastRow2 = studentList.getLastRowNum();
 
         ArrayList<Cell> Lessons = new ArrayList<>();
@@ -66,7 +66,7 @@ public class canvasCheckTryOut {
 
         /** OPEN YOUR MOBILE PHONE AND APPROVE OKTA LOGIN*/
 
-/*
+
         ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
         driver.close();
@@ -93,4 +93,5 @@ public class canvasCheckTryOut {
             }
         }
     }
-*/
+}
+
