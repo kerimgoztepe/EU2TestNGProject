@@ -31,12 +31,14 @@ public class AdidasTask_TestNG {
             Thread.sleep(2000);
             driver.quit();
         }
+
         @Test
         public void test1() throws InterruptedException {
             //
             driver.findElement(By.xpath("//a[.='Laptops']")).click();
             Thread.sleep(3000);
             driver.findElement(By.xpath("//a[.='Sony vaio i5']")).click();
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Add to cart']")).click();
             Thread.sleep(2000);
             ////click(accepting) on popUp
@@ -48,13 +50,16 @@ public class AdidasTask_TestNG {
             Thread.sleep(2000);
             //adding items in the shopping cart(basket)
             driver.findElement(By.xpath("//a[.='Laptops']")).click();
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Dell i7 8gb']")).click();
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Add to cart']")).click();
             Thread.sleep(2000);
             //click(accepting) on popUp
             alert.accept();
             //click on cart
             driver.findElement(By.xpath("//a[.='Cart']")).click();
+            Thread.sleep(2000);
             //click on Delete button
             driver.findElement(By.xpath("//a[.='Delete']")).click();
             Thread.sleep(2000);
@@ -79,18 +84,18 @@ public class AdidasTask_TestNG {
             Thread.sleep(3000);
             //filling out popUp form
             jse.executeScript("arguments[0].setAttribute('value','"+"Mike" + "')",driver.findElement(By.xpath("//input[@id = 'name']")));
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             jse.executeScript("arguments[0].setAttribute('value','"+"UK" + "')",driver.findElement(By.xpath("//input[@id = 'country']")));
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             jse.executeScript("arguments[0].setAttribute('value','"+"London" + "')",driver.findElement(By.xpath("//input[@id = 'city']")));
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             jse.executeScript("arguments[0].setAttribute('value','"+"GB" + "')",driver.findElement(By.xpath("//input[@id = 'card']")));
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             jse.executeScript("arguments[0].setAttribute('value','"+"10" + "')",driver.findElement(By.xpath("//input[@id = 'month']")));
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             jse.executeScript("arguments[0].setAttribute('value','"+"2027" + "')",driver.findElement(By.xpath("//input[@id = 'year']")));
 
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             //clicking on purchase button
             WebElement purchaseBtn = driver.findElement(By.xpath("//button[.='Purchase']"));
             jse.executeScript("arguments[0].click();",purchaseBtn);

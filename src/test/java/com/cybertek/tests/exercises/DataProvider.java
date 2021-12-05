@@ -9,6 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 public class DataProvider {
 
@@ -43,6 +45,7 @@ public class DataProvider {
         } else {
             return new Object[][]{{"500","This page returned a 500 status code."}};
         }
+
 
     }
 

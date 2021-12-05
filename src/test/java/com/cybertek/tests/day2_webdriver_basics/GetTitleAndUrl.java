@@ -11,7 +11,7 @@ public class GetTitleAndUrl {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
 
-        driver.get("https://cybertekschool.com/");
+        driver.get("https://www.youtube.com/");
 
         // getting title with selenium
         // first short cut to introduce local variable
