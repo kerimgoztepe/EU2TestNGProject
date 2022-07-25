@@ -24,6 +24,7 @@ public class AmazonTest {
         driver.findElement(By.xpath("//input[@value='Go']")).click();
         WebElement result = driver.findElement(By.xpath("//span[contains(text(),'results for')]"));
         System.out.println("result.getText() = " + result.getText());
+        System.out.println("this is ok");
         driver.quit();
     }
 }
